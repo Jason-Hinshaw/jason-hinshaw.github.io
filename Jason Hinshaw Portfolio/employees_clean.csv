@@ -1,0 +1,76 @@
+Employee ID,First Name,Last Name,Job Title,Region,Branch ID,Branch Location,Hire Date,Employment Status,Compensation Type,Salary,BPS Compensation,Manager ID,Tenure (Years),Is BPS Compensation,Compensation Category,Full Name,Branch Label
+100,Daniel,Carson,Loan Officer,Midwest,22,Chicago,2015-04-05,Active,bps,0.0,130.0,,11.0,1,BPS,Daniel Carson,Chicago - 22
+101,Daniel,Hernandez,Loan Officer,East,12,Charlotte,2021-07-02,Active,bps,0.0,80.0,,4.8,1,BPS,Daniel Hernandez,Charlotte - 12
+102,Sophia,Shaw,Loan Officer,West,18,Los Angeles,2020-10-01,Active,bps,0.0,120.0,,5.5,1,BPS,Sophia Shaw,Los Angeles - 18
+103,Rebecca,Hernandez,Loan Officer,South,30,Atlanta,2015-08-19,Active,bps,0.0,100.0,,10.7,1,BPS,Rebecca Hernandez,Atlanta - 30
+104,Emily,Turner,Loan Officer,South,30,Atlanta,2017-05-05,Active,bps,0.0,90.0,,9.0,1,BPS,Emily Turner,Atlanta - 30
+105,Noah,Nguyen,Loan Officer,East,12,Charlotte,2018-02-12,Active,bps,0.0,100.0,,8.2,1,BPS,Noah Nguyen,Charlotte - 12
+106,Harper,Johnson,Loan Officer,East,12,Charlotte,2019-09-04,Active,bps,0.0,110.0,,6.6,1,BPS,Harper Johnson,Charlotte - 12
+107,Sophia,Hernandez,Loan Officer,Midwest,22,Chicago,2022-10-28,Active,bps,0.0,100.0,,3.5,1,BPS,Sophia Hernandez,Chicago - 22
+108,Amelia,Shaw,Loan Officer,East,12,Charlotte,2012-11-08,Active,bps,0.0,100.0,,13.4,1,BPS,Amelia Shaw,Charlotte - 12
+109,Sophia,Price,Loan Officer,East,12,Charlotte,2018-05-15,Active,bps,0.0,130.0,,7.9,1,BPS,Sophia Price,Charlotte - 12
+110,Ava,Turner,Loan Officer,Midwest,22,Chicago,2017-04-22,Active,bps,0.0,100.0,,9.0,1,BPS,Ava Turner,Chicago - 22
+111,Sophia,Gonzalez,Loan Officer,West,18,Los Angeles,2020-12-08,Active,bps,0.0,90.0,,5.4,1,BPS,Sophia Gonzalez,Los Angeles - 18
+112,Mason,Garcia,Loan Officer,Midwest,22,Chicago,2022-12-18,Active,bps,0.0,90.0,,3.3,1,BPS,Mason Garcia,Chicago - 22
+113,Noah,Lee,Loan Officer,West,18,Los Angeles,2012-06-13,Active,bps,0.0,100.0,,13.8,1,BPS,Noah Lee,Los Angeles - 18
+114,Sophia,Shaw,Loan Officer,South,35,Dallas,2017-04-21,Active,bps,0.0,110.0,,9.0,1,BPS,Sophia Shaw,Dallas - 35
+115,Isabella,Davis,Loan Officer,West,18,Los Angeles,2016-03-08,Active,bps,0.0,130.0,,10.1,1,BPS,Isabella Davis,Los Angeles - 18
+116,Mia,Hernandez,Loan Officer,Midwest,22,Chicago,2021-07-19,Active,bps,0.0,110.0,,4.7,1,BPS,Mia Hernandez,Chicago - 22
+117,Ava,Price,Loan Officer,West,18,Los Angeles,2020-08-03,Active,bps,0.0,80.0,,5.7,1,BPS,Ava Price,Los Angeles - 18
+118,Daniel,Patel,Loan Officer,West,18,Los Angeles,2022-07-20,Active,bps,0.0,80.0,,3.7,1,BPS,Daniel Patel,Los Angeles - 18
+119,Isabella,Garcia,Loan Officer,South,35,Dallas,2019-09-09,Active,bps,0.0,120.0,,6.6,1,BPS,Isabella Garcia,Dallas - 35
+120,Emily,Nguyen,Loan Officer,South,35,Dallas,2016-11-11,Active,bps,0.0,80.0,,9.4,1,BPS,Emily Nguyen,Dallas - 35
+121,Liam,Miller,Loan Officer,West,18,Los Angeles,2019-01-24,Active,bps,0.0,130.0,,7.2,1,BPS,Liam Miller,Los Angeles - 18
+122,Olivia,Martinez,Loan Officer,West,18,Los Angeles,2020-02-28,Active,bps,0.0,130.0,,6.1,1,BPS,Olivia Martinez,Los Angeles - 18
+123,Liam,Martinez,Loan Officer,South,35,Dallas,2015-03-12,Active,bps,0.0,90.0,,11.1,1,BPS,Liam Martinez,Dallas - 35
+124,Mia,Martinez,Loan Officer,East,12,Charlotte,2021-06-16,Active,bps,0.0,80.0,,4.8,1,BPS,Mia Martinez,Charlotte - 12
+125,Daniel,Jones,Underwriter,Midwest,22,Chicago,2015-01-08,Active,salary,115000.0,0.0,,11.3,0,Salary,Daniel Jones,Chicago - 22
+126,Sophia,Ramirez,Underwriter,South,30,Atlanta,2013-09-25,Active,salary,65000.0,0.0,,12.6,0,Salary,Sophia Ramirez,Atlanta - 30
+127,Ashley,Rodriguez,Underwriter,South,35,Dallas,2014-05-17,Active,salary,115000.0,0.0,,11.9,0,Salary,Ashley Rodriguez,Dallas - 35
+128,Ethan,Shaw,Underwriter,South,35,Dallas,2015-12-10,Active,salary,95000.0,0.0,,10.4,0,Salary,Ethan Shaw,Dallas - 35
+129,Ava,Davis,Underwriter,South,35,Dallas,2019-02-08,Active,salary,65000.0,0.0,,7.2,0,Salary,Ava Davis,Dallas - 35
+130,Sophia,Brown,Underwriter,East,12,Charlotte,2021-09-08,Active,salary,115000.0,0.0,,4.6,0,Salary,Sophia Brown,Charlotte - 12
+131,Jonathan,Carson,Underwriter,East,12,Charlotte,2022-01-08,Active,salary,52000.0,0.0,,4.3,0,Salary,Jonathan Carson,Charlotte - 12
+132,Marcus,Brown,Underwriter,East,12,Charlotte,2020-04-09,Active,salary,150000.0,0.0,,6.0,0,Salary,Marcus Brown,Charlotte - 12
+133,Logan,Shaw,Underwriter,South,35,Dallas,2014-12-19,Active,salary,115000.0,0.0,,11.3,0,Salary,Logan Shaw,Dallas - 35
+134,Logan,Price,Underwriter,South,30,Atlanta,2018-04-04,Active,salary,52000.0,0.0,,8.0,0,Salary,Logan Price,Atlanta - 30
+135,Ethan,Jones,Underwriter,South,30,Atlanta,2018-08-28,Active,salary,150000.0,0.0,,7.6,0,Salary,Ethan Jones,Atlanta - 30
+136,Marcus,Nguyen,Underwriter,East,12,Charlotte,2018-12-11,Active,salary,52000.0,0.0,,7.4,0,Salary,Marcus Nguyen,Charlotte - 12
+137,Jonathan,Shaw,Underwriter,West,18,Los Angeles,2020-08-05,Active,salary,95000.0,0.0,,5.7,0,Salary,Jonathan Shaw,Los Angeles - 18
+138,Michael,Johnson,Underwriter,South,30,Atlanta,2015-02-15,Active,salary,115000.0,0.0,,11.2,0,Salary,Michael Johnson,Atlanta - 30
+139,Daniel,Lee,Underwriter,South,35,Dallas,2012-02-25,Active,salary,65000.0,0.0,,14.1,0,Salary,Daniel Lee,Dallas - 35
+140,Michael,Miller,Processor,South,30,Atlanta,2019-04-28,Active,salary,95000.0,0.0,,7.0,0,Salary,Michael Miller,Atlanta - 30
+141,Marcus,Turner,Processor,South,30,Atlanta,2012-07-09,Active,salary,95000.0,0.0,,13.8,0,Salary,Marcus Turner,Atlanta - 30
+142,Liam,Miller,Processor,South,35,Dallas,2022-12-16,Active,salary,65000.0,0.0,,3.3,0,Salary,Liam Miller,Dallas - 35
+143,Rebecca,Williams,Processor,West,18,Los Angeles,2012-10-24,Active,salary,115000.0,0.0,,13.5,0,Salary,Rebecca Williams,Los Angeles - 18
+144,Marcus,Brown,Processor,East,12,Charlotte,2012-10-16,Active,salary,115000.0,0.0,,13.5,0,Salary,Marcus Brown,Charlotte - 12
+145,Lucas,Turner,Processor,East,12,Charlotte,2020-02-28,Active,salary,65000.0,0.0,,6.1,0,Salary,Lucas Turner,Charlotte - 12
+146,Sophia,Gonzalez,Processor,East,12,Charlotte,2022-04-13,Active,salary,52000.0,0.0,,4.0,0,Salary,Sophia Gonzalez,Charlotte - 12
+147,Amelia,Price,Processor,South,35,Dallas,2021-01-20,Active,salary,52000.0,0.0,,5.2,0,Salary,Amelia Price,Dallas - 35
+148,Ethan,Lopez,Processor,South,35,Dallas,2020-06-09,Active,salary,65000.0,0.0,,5.9,0,Salary,Ethan Lopez,Dallas - 35
+149,Noah,Price,Processor,Midwest,22,Chicago,2018-03-22,Active,salary,150000.0,0.0,,8.1,0,Salary,Noah Price,Chicago - 22
+150,Liam,Davis,Processor,Midwest,22,Chicago,2013-01-15,Active,salary,115000.0,0.0,,13.3,0,Salary,Liam Davis,Chicago - 22
+151,Amelia,Nguyen,Processor,East,12,Charlotte,2020-04-17,Active,salary,78000.0,0.0,,6.0,0,Salary,Amelia Nguyen,Charlotte - 12
+152,Ashley,Jones,Processor,East,12,Charlotte,2015-06-10,Active,salary,65000.0,0.0,,10.9,0,Salary,Ashley Jones,Charlotte - 12
+153,Mason,Hernandez,Processor,Midwest,22,Chicago,2021-11-17,Active,salary,52000.0,0.0,,4.4,0,Salary,Mason Hernandez,Chicago - 22
+154,Mia,Williams,Processor,East,12,Charlotte,2014-05-04,Active,salary,52000.0,0.0,,12.0,0,Salary,Mia Williams,Charlotte - 12
+155,Mia,Patel,Account Executive,Midwest,22,Chicago,2016-10-07,Active,bps,0.0,130.0,,9.5,1,BPS,Mia Patel,Chicago - 22
+156,Noah,Shaw,Account Executive,Midwest,22,Chicago,2020-08-09,Active,bps,0.0,80.0,,5.7,1,BPS,Noah Shaw,Chicago - 22
+157,Sophia,Miller,Account Executive,Midwest,22,Chicago,2012-01-11,Active,bps,0.0,90.0,,14.3,1,BPS,Sophia Miller,Chicago - 22
+158,Olivia,Turner,Account Executive,South,30,Atlanta,2020-12-14,Active,bps,0.0,120.0,,5.3,1,BPS,Olivia Turner,Atlanta - 30
+159,Emily,Nguyen,Account Executive,East,12,Charlotte,2014-09-02,Active,bps,0.0,100.0,,11.6,1,BPS,Emily Nguyen,Charlotte - 12
+160,Amelia,Hernandez,Account Executive,West,18,Los Angeles,2018-03-02,Active,bps,0.0,100.0,,8.1,1,BPS,Amelia Hernandez,Los Angeles - 18
+161,Ava,Lee,Account Executive,Midwest,22,Chicago,2015-11-08,Active,bps,0.0,130.0,,10.4,1,BPS,Ava Lee,Chicago - 22
+162,Daniel,Jones,Account Executive,South,35,Dallas,2018-10-24,Active,bps,0.0,90.0,,7.5,1,BPS,Daniel Jones,Dallas - 35
+163,Jonathan,Turner,Account Executive,West,18,Los Angeles,2018-01-06,Active,bps,0.0,130.0,,8.3,1,BPS,Jonathan Turner,Los Angeles - 18
+164,Noah,Miller,Account Executive,West,18,Los Angeles,2016-03-26,Active,bps,0.0,130.0,,10.1,1,BPS,Noah Miller,Los Angeles - 18
+165,Daniel,Garcia,Branch Manager,South,30,Atlanta,2015-04-27,Active,salary,95000.0,0.0,,11.0,0,Salary,Daniel Garcia,Atlanta - 30
+166,Ava,Williams,Branch Manager,West,18,Los Angeles,2012-11-07,Active,salary,95000.0,0.0,,13.4,0,Salary,Ava Williams,Los Angeles - 18
+167,Noah,Johnson,Branch Manager,Midwest,22,Chicago,2017-11-17,Active,salary,95000.0,0.0,,8.4,0,Salary,Noah Johnson,Chicago - 22
+168,Mia,Brown,Branch Manager,East,12,Charlotte,2016-03-19,Active,salary,78000.0,0.0,,10.1,0,Salary,Mia Brown,Charlotte - 12
+169,Marcus,Nguyen,Branch Manager,Midwest,22,Chicago,2017-07-20,Active,salary,115000.0,0.0,,8.7,0,Salary,Marcus Nguyen,Chicago - 22
+170,Daniel,Garcia,Regional Manager,Midwest,22,Chicago,2012-12-14,Active,salary,52000.0,0.0,,13.3,0,Salary,Daniel Garcia,Chicago - 22
+171,Lucas,Hernandez,Regional Manager,Midwest,22,Chicago,2018-02-22,Active,salary,78000.0,0.0,,8.2,0,Salary,Lucas Hernandez,Chicago - 22
+172,Harper,Brown,Regional Manager,Midwest,22,Chicago,2020-05-22,Active,salary,95000.0,0.0,,5.9,0,Salary,Harper Brown,Chicago - 22
+173,Noah,Garcia,Operations Director,South,35,Dallas,2014-04-14,Active,salary,150000.0,0.0,,12.0,0,Salary,Noah Garcia,Dallas - 35
+174,Isabella,Turner,Operations Director,South,30,Atlanta,2020-01-10,Active,salary,78000.0,0.0,,6.3,0,Salary,Isabella Turner,Atlanta - 30
