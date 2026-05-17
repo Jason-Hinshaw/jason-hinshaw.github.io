@@ -52,6 +52,7 @@
             background: #0f172a;
             border-bottom: 1px solid var(--border);
             padding: 0.75rem 0;
+            z-index: 10;
         }
 
         .nav {
@@ -191,6 +192,41 @@
             font-size: 0.8rem;
             color: var(--textmuted);
         }
+
+        /* ABOUT ME SECTION */
+        #aboutme {
+            background: #0f172a;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--textmain);
+        }
+
+        .about-tagline {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            color: var(--textmuted);
+        }
     </style>
 </head>
 
@@ -209,7 +245,7 @@
             </div>
 
             <div class="navlinks">
-                <a href="#about">About</a>
+                <a href="#aboutme">About</a>
                 <a href="#projects">Projects</a>
                 <a href="#dashboards">Dashboards</a>
                 <a href="#contact">Contact</a>
@@ -220,7 +256,7 @@
 
 <main>
 
-<section class="hero" id="about">
+<section class="hero">
     <div class="container herogrid">
         <div>
             <div class="herokicker">Analytics • BI • SQL • Power BI</div>
@@ -245,6 +281,33 @@
                 Mortgage and loan analytics pipeline: raw exports to clean tables to SQL views to Power BI.
             </p>
         </div>
+    </div>
+</section>
+
+<section id="aboutme">
+    <div class="container about-container">
+        <h2 class="about-title">About Me</h2>
+        <p class="about-tagline">Data Analytics • BI • SQL • Power BI</p>
+
+        <p class="about-text">
+            I’m a data analyst and BI developer with six years of experience in the mortgage industry,
+            specializing in Power BI, SQL, ETL workflows, and operational analytics. I design and build
+            analytics workflows end to end — from raw CSVs and SQL views to clean data models and
+            interactive dashboards that drive real business decisions.
+        </p>
+
+        <p class="about-text">
+            At Rocket Mortgage, I focused on surfacing operational issues, improving visibility into
+            performance trends, and helping teams understand and resolve bottlenecks. To showcase these
+            skills publicly, I engineered a fully synthetic mortgage company and built a complete analytics
+            environment around it: Python‑generated data, a full ETL pipeline, a relational SQL database,
+            and multiple Power BI dashboards.
+        </p>
+
+        <p class="about-text">
+            My goal is simple: turn messy data into clean insight — and build analytics that actually
+            help people make better decisions.
+        </p>
     </div>
 </section>
 
@@ -317,4 +380,5 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 </body>
 </html>
+
 
