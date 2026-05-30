@@ -355,77 +355,128 @@
 
 
 
-            <!-- Narrative -->
-            <div class="card">
-                <div class="sectiontitle">Narrative Analysis</div>
+            <style>
+/* Shared card text styling */
+.card p {
+    margin-bottom: 1rem;
+    line-height: 1.65;
+    color: var(--textmain);
+    font-size: 0.95rem;
+    max-width: 900px;
+}
 
-                <p>
-                    Los Angeles produces the largest funded volume in the network. Los Angeles also has closed
-                    the most loans relative to other branches. This aligns with expectations give the higher property 
-                    values in that market. When adjusting for market size, as well as inflation, Charlotte emerges as 
-                    a standout performer. Charlotte generates competitive funded volume in a more modest housing environment,
-                    which suggests that its results are driven by operational efficiency rather than market inflation.
-                </p>
+/* Shared section title styling */
+.card .sectiontitle {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--textmain);
+}
 
-                <p>
-                    Chicago records the highest suspension rate. This pattern can indicate friction in documentation
-                    or underwriting, yet the branch does not show a corresponding spike in withdrawals. Instead, loans
-                    are frequently suspended and then recovered. This suggests that loan officers and operations teams
-                    are actively working suspended files and successfully moving them toward closing.
-                </p>
-
-                <p>
-                    Charlotte shows the opposite behavior. It has the highest fallout rate while maintaining a lower
-                    suspension rate. Borrowers in this market appear more likely to cancel outright rather than enter
-                    suspended status. This may reflect borrower sensitivity to rate movement or competitive pressure. This 
-                    may also speak to lower conflict resolution amongst Charlotte loan officers and operational teams.
-                </p>
-
-                <p>
-                    Retail production outperforms wholesale in both funded volume and the strength of Borrower profiles. Retail loans
-                    show higher average loan amounts, lower leverage, lower DTI, and stronger FICO scores. Wholesale
-                    loans exhibit higher fallout, which may reflect less direct borrower engagement or greater pricing
-                    sensitivity. This may also reflect borrower preference, as stronger‑profile borrowers often gravitate toward larger, 
-                    branded lenders rather than smaller broker shops.
-                </p>
-
-                <p>
-                    Atlanta displays the strongest borrower profile across the branches. Its loans show higher
-                    average amounts, lower LTV, lower DTI, and higher FICO scores. This suggests a healthier
-                    borrower base and lower long term credit risk.
-                </p>
-
-                <p>
-                    Withdrawn loans cluster in the middle of the FICO distribution rather than at the lowest end.
-                    Borrowers in the mid tier may be more sensitive to rate changes or qualification uncertainty.
-                    This finding contradicts the idea that fallout is heavily skewed towards lower FICO borrowers.
-                    
-                </p>
-
-                <p>
-                    LTV appears to influence withdrawal behavior more than FICO. Loans in the 85–90% LTV range show the highest
-                    withdrawal percentage, while loans in the 95%+ LTV range have the lowest. This pattern, along with broader
-                    market trends, suggests that borrowers above 95% LTV are often in first‑time homebuyer or high‑LTV programs
-                    and therefore have fewer options to shop the market, making them less likely to withdraw.
-                </p>
+/* Matching card styling for Narrative */
+.narrative-card {
+    padding: 1.75rem 2rem;
+    border-left: 4px solid var(--accent);
+    background: var(--cardbg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+</style>
 
 
-                <p>
-                    Funding timelines remain consistent across branches. This indicates a stable and predictable
-                    fulfillment process and strong operational control. Atlanta currently has the longest lock to funding
-                    time while Chicago currently has the lowest lock to funding time.
-                </p>
-            </div>
+<!-- Narrative -->
+<div class="card narrative-card">
+    <div class="sectiontitle">Narrative Analysis</div>
 
-          <!-- Technical Context -->
-<div class="card">
+    <p>
+        Los Angeles produces the largest funded volume in the network. Los Angeles also has closed
+        the most loans relative to other branches. This aligns with expectations give the higher property 
+        values in that market. When adjusting for market size, as well as inflation, Charlotte emerges as 
+        a standout performer. Charlotte generates competitive funded volume in a more modest housing environment,
+        which suggests that its results are driven by operational efficiency rather than market inflation.
+    </p>
 
-    <style>
-        .sectiontitle {
-            text-align: center;
-        }
-    </style>
+    <p>
+        Chicago records the highest suspension rate. This pattern can indicate friction in documentation
+        or underwriting, yet the branch does not show a corresponding spike in withdrawals. Instead, loans
+        are frequently suspended and then recovered. This suggests that loan officers and operations teams
+        are actively working suspended files and successfully moving them toward closing.
+    </p>
 
+    <p>
+        Charlotte shows the opposite behavior. It has the highest fallout rate while maintaining a lower
+        suspension rate. Borrowers in this market appear more likely to cancel outright rather than enter
+        suspended status. This may reflect borrower sensitivity to rate movement or competitive pressure. This 
+        may also speak to lower conflict resolution amongst Charlotte loan officers and operational teams.
+    </p>
+
+    <p>
+        Retail production outperforms wholesale in both funded volume and the strength of Borrower profiles. Retail loans
+        show higher average loan amounts, lower leverage, lower DTI, and stronger FICO scores. Wholesale
+        loans exhibit higher fallout, which may reflect less direct borrower engagement or greater pricing
+        sensitivity. This may also reflect borrower preference, as stronger‑profile borrowers often gravitate toward larger, 
+        branded lenders rather than smaller broker shops.
+    </p>
+
+    <p>
+        Atlanta displays the strongest borrower profile across the branches. Its loans show higher
+        average amounts, lower LTV, lower DTI, and higher FICO scores. This suggests a healthier
+        borrower base and lower long term credit risk.
+    </p>
+
+    <p>
+        Withdrawn loans cluster in the middle of the FICO distribution rather than at the lowest end.
+        Borrowers in the mid tier may be more sensitive to rate changes or qualification uncertainty.
+        This finding contradicts the idea that fallout is heavily skewed towards lower FICO borrowers.
+    </p>
+
+    <p>
+        LTV appears to influence withdrawal behavior more than FICO. Loans in the 85–90% LTV range show the highest
+        withdrawal percentage, while loans in the 95%+ LTV range have the lowest. This pattern, along with broader
+        market trends, suggests that borrowers above 95% LTV are often in first‑time homebuyer or high‑LTV programs
+        and therefore have fewer options to shop the market, making them less likely to withdraw.
+    </p>
+
+    <p>
+        Funding timelines remain consistent across branches. This indicates a stable and predictable
+        fulfillment process and strong operational control. Atlanta currently has the longest lock to funding
+        time while Chicago currently has the lowest lock to funding time.
+    </p>
+</div>
+
+          <style>
+/* Shared card text styling */
+.card p {
+    margin-bottom: 1rem;
+    line-height: 1.65;
+    color: var(--textmain);
+    font-size: 0.95rem;
+    max-width: 900px;
+}
+
+/* Shared section title styling */
+.card .sectiontitle {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--textmain);
+}
+
+/* Matching card styling for Technical Context */
+.technical-card {
+    padding: 1.75rem 2rem;
+    border-left: 4px solid var(--accent);
+    background: var(--cardbg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+</style>
+
+
+<!-- Technical Context -->
+<div class="card technical-card">
     <div class="sectiontitle">Technical Context</div>
 
     <p>
@@ -448,6 +499,7 @@
         suitable for professional review.
     </p>
 </div>
+
 
 
                </div>
