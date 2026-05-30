@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pipeline Insights | Jason Hinshaw Portfolio</title>
+    <title>Pipeline Insights Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Reuse your existing styling -->
+    <!-- FULL SITE CSS (copied from index) -->
     <style>
         :root {
             --bg: #050816;
@@ -48,29 +48,65 @@
         }
 
         header {
+            position: sticky;
+            top: 0;
             background: #0f172a;
             border-bottom: 1px solid var(--border);
-            padding: 1.5rem 0;
-            margin-bottom: 2rem;
+            padding: 0.75rem 0;
+            z-index: 10;
         }
 
-        h1 {
-            font-size: 2rem;
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navleft {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #38bdf8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: black;
+        }
+
+        .navtitlemain {
+            font-size: 1rem;
             font-weight: bold;
         }
 
-        .sectiontitle {
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+        .navtitlesub {
+            font-size: 0.75rem;
+            color: var(--textmuted);
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 1.25rem;
         }
 
         .card {
             background: var(--cardbg);
             border: 1px solid var(--border);
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: 8px;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .sectiontitle {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
         }
 
         .hero-image {
@@ -82,29 +118,11 @@
             display: block;
         }
 
-        ul {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            padding-left: 1.2rem;
-        }
-
-        ul li {
-            margin-bottom: 0.6rem;
-            line-height: 1.5;
-        }
-
-        p {
-            margin-bottom: 1.2rem;
-            line-height: 1.7;
-            color: var(--textmuted);
-        }
-
         footer {
             padding: 1.5rem 0;
             text-align: center;
             font-size: 0.8rem;
             color: var(--textmuted);
-            margin-top: 3rem;
         }
     </style>
 </head>
@@ -112,7 +130,7 @@
 <body>
 <div class="page">
 
-    <!-- Full Site Navigation -->
+    <!-- FULL SITE NAVIGATION -->
     <header>
         <div class="container">
             <div class="nav">
@@ -135,14 +153,13 @@
         </div>
     </header>
 
-    <!-- Page Title (NOT inside a header) -->
-    <div class="container">
-        <h1 style="text-align:center; margin-top: 40px;">
-            Pipeline Insights Dashboard
-        </h1>
+    <!-- PAGE TITLE -->
+    <div class="container" style="margin-top: 40px;">
+        <h1 style="text-align:center;">Pipeline Insights Dashboard</h1>
     </div>
 
     <main>
+
 
         <div class="container">
 
