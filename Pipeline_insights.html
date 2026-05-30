@@ -177,31 +177,46 @@
   </p>
 </div>
 
+<!-- KPIs -->
+<div class="card">
+    <div class="sectiontitle">Key KPIs</div>
 
-            <!-- KPIs -->
-            <div class="card">
-                <div class="sectiontitle">Key KPIs</div>
+    <style>
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 32px; /* row gap, column gap */
+            padding-left: 20px; /* keeps bullet indent natural */
+        }
 
-                <ul>
-                    <li><strong>Total funded loan amount:</strong> $3.64 Billion Dollars</li>
-                    <li><strong>Funded loans:</strong> 8,479</li>
-                    <li><strong>Funded rate:</strong> 73.96%</li>
-                    <li><strong>Withdrawn loans:</strong> 2,337</li>
-                    <li><strong>Withdrawn rate:</strong> 20.38%</li>
-                    <li><strong>Suspended loans:</strong> 649</li>
-                    <li><strong>Suspended rate:</strong> 5.66%</li>
-                    <li><strong>Average loan amount:</strong> $427,870 </li>
-                    <li><strong>Average FICO:</strong> 719.25</li>
-                    <li><strong>Average LTV:</strong> 79.61%</li>
-                    <li><strong>Average DTI:</strong> 35.55%</li>
-                </ul>
-            </div>
+        .kpi-grid li {
+            margin: 0;
+            list-style: disc;
+            line-height: 1.5;
+        }
 
-            <!-- Key Insights -->
-            <div class="card">
-                <div class="sectiontitle">Key Insights</div>
+        @media (max-width: 800px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 
-               <ul>
+    <ul class="kpi-grid">
+        <li><strong>Total funded loan amount:</strong> $3.64 Billion</li>
+        <li><strong>Funded loans:</strong> 8,479</li>
+        <li><strong>Funded rate:</strong> 73.96%</li>
+        <li><strong>Withdrawn loans:</strong> 2,337</li>
+        <li><strong>Withdrawn rate:</strong> 20.38%</li>
+        <li><strong>Suspended loans:</strong> 649</li>
+        <li><strong>Suspended rate:</strong> 5.66%</li>
+        <li><strong>Average loan amount:</strong> $427,870</li>
+        <li><strong>Average FICO:</strong> 719.25</li>
+        <li><strong>Average LTV:</strong> 79.61%</li>
+        <li><strong>Average DTI:</strong> 35.55%</li>
+    </ul>
+</div>
+
 
   <li>
     <strong>Los Angeles leads in funded volume.</strong>
