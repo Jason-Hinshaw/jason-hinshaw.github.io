@@ -1,229 +1,270 @@
+<!DOCTYPE html>
 <html lang="en">
-  <body>
-    <div class="page">
+<head>
+    <meta charset="UTF-8">
+    <title>Pipeline Insights | Jason Hinshaw Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Header -->
-      <header>
+    <!-- Reuse your existing styling -->
+    <style>
+        :root {
+            --bg: #050816;
+            --bgalt: #0b1020;
+            --accent: #385ef8;
+            --textmain: #e5e7eb;
+            --textmuted: #9ca3af;
+            --cardbg: #0f172a;
+            --border: #1f2937;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #020617;
+            color: var(--textmain);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            background: #0f172a;
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .sectiontitle {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background: var(--cardbg);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 1400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            margin: 30px auto;
+            display: block;
+        }
+
+        ul {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            padding-left: 1.2rem;
+        }
+
+        ul li {
+            margin-bottom: 0.6rem;
+            line-height: 1.5;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+            color: var(--textmuted);
+        }
+
+        footer {
+            padding: 1.5rem 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--textmuted);
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page">
+
+    <!-- Header -->
+    <header>
         <div class="container">
-          <h1>Pipeline Insights</h1>
+            <h1>Pipeline Insights Dashboard</h1>
         </div>
-      </header>
+    </header>
 
-      <main>
+    <main>
         <div class="container">
 
-          <!-- Screenshot -->
-          <div class="pipeline-screenshot">
+            <!-- Screenshot -->
             <img src="PATH_TO_YOUR_PIPELINE_SCREENSHOT.png"
                  alt="Pipeline Insights Dashboard"
                  class="hero-image">
-          </div>
 
-          <!-- PDF Download -->
-          <div class="pipeline-download">
-            <a href="PATH_TO_YOUR_PIPELINE_DASHBOARD_PDF.pdf"
-               target="_blank"
-               rel="noopener">
-              Download Pipeline Insights Dashboard (PDF)
-            </a>
-          </div>
-
-          <!-- Intro -->
-          <section class="pipeline-intro">
+            <!-- PDF Download -->
             <p>
-              This dashboard provides a comprehensive view of mortgage pipeline performance across branches.
-              It highlights funded volume, fallout behavior, borrower characteristics, and branch level trends.
-              The objective is to understand how market conditions, borrower profiles, and operational execution
-              shape overall production.
-            </p>
-          </section>
-
-          <!-- KPIs -->
-          <section class="pipeline-kpis">
-            <h2>Key KPIs</h2>
-
-            <ul>
-              <li><strong>Total funded loan amount:</strong> 3.64 billion dollars</li>
-              <li><strong>Funded loans:</strong> 8479</li>
-              <li><strong>Funded rate:</strong> 73.96 percent</li>
-              <li><strong>Withdrawn loans:</strong> 2337</li>
-              <li><strong>Withdrawn rate:</strong> 20.38 percent</li>
-              <li><strong>Suspended loans:</strong> 649</li>
-              <li><strong>Suspended rate:</strong> 5.66 percent</li>
-              <li><strong>Average loan amount:</strong> 427870 dollars</li>
-              <li><strong>Average FICO:</strong> 719.25</li>
-              <li><strong>Average LTV:</strong> 79.61 percent</li>
-              <li><strong>Average DTI:</strong> 35.55 percent</li>
-            </ul>
-
-            <p>
-              These metrics establish the foundation for understanding production strength, borrower quality,
-              and pipeline health across the organization.
-            </p>
-          </section>
-
-          <!-- Key Insights -->
-          <section class="pipeline-key-insights">
-            <h2>Key Insights</h2>
-
-            <ul>
-              <li>
-                <strong>Los Angeles leads in funded volume.</strong>
-                It produces the largest funded loan amount in the network, driven largely by higher property values
-                rather than purely superior operational performance.
-              </li>
-
-              <li>
-                <strong>Charlotte performs strongly relative to its market.</strong>
-                It delivers substantial funded volume in a more modest housing market, which suggests that its results
-                are driven by operational efficiency rather than market inflation.
-              </li>
-
-              <li>
-                <strong>Chicago shows the highest suspension rate.</strong>
-                Suspension is elevated, yet withdrawals remain controlled, indicating that loan officers are effective
-                at recovering suspended files and guiding them to resolution.
-              </li>
-
-              <li>
-                <strong>Charlotte has the highest fallout rate.</strong>
-                Its suspension rate is lower, which implies that borrowers in this market are more likely to cancel
-                outright rather than enter a suspended status.
-              </li>
-
-              <li>
-                <strong>Retail outperforms wholesale.</strong>
-                Retail channels show higher funded volume and stronger borrower profiles, while wholesale exhibits
-                higher fallout and more fragile pipelines.
-              </li>
-
-              <li>
-                <strong>Atlanta displays the strongest borrower profiles.</strong>
-                Loans from this branch show higher average amounts, lower leverage, lower DTI, and higher FICO scores,
-                suggesting a healthier borrower base and lower long term credit risk.
-              </li>
-
-              <li>
-                <strong>Withdrawals cluster in mid tier FICO ranges.</strong>
-                Withdrawn loans are concentrated between FICO 650 and 750 rather than at the lowest credit bands,
-                challenging the assumption that weaker credit is the primary driver of withdrawals.
-              </li>
-
-              <li>
-                <strong>LTV influences fallout more than FICO.</strong>
-                Loans in the 85 to 90 percent LTV band show the highest withdrawal percentage, while loans above
-                95 percent LTV show the lowest, indicating that leverage and product mix play a larger role than
-                credit score alone.
-              </li>
-
-              <li>
-                <strong>Funding timelines are consistent across branches.</strong>
-                Average time from lock to funding is stable, which suggests a standardized and predictable fulfillment
-                process across the network.
-              </li>
-
-              <li>
-                <strong>Branch performance is tightly grouped.</strong>
-                Closed rates across branches fall within a narrow range, indicating strong process control and that
-                differences in outcomes are driven more by market conditions and borrower mix than by inconsistent
-                execution.
-              </li>
-            </ul>
-          </section>
-
-          <!-- Narrative -->
-          <section class="pipeline-narrative">
-            <h2>Narrative Analysis</h2>
-
-            <p>
-              Los Angeles produces the largest funded volume in the network. This aligns with expectations given
-              the higher property values in that market, which naturally elevate loan amounts. When adjusting for
-              market size and price levels, Charlotte emerges as a standout performer. It generates competitive
-              funded volume in a more modest housing environment, which suggests that its results are driven by
-              operational efficiency rather than market inflation alone.
+                <a href="PATH_TO_YOUR_PIPELINE_DASHBOARD_PDF.pdf" target="_blank" rel="noopener">
+                    Download Pipeline Insights Dashboard (PDF)
+                </a>
             </p>
 
-            <p>
-              Chicago records the highest suspension rate. This pattern can indicate friction in documentation
-              or underwriting, yet the branch does not show a corresponding spike in withdrawals. Instead, loans
-              are frequently suspended and then recovered. This behavior suggests that loan officers and operations
-              teams are actively working suspended files and successfully moving them toward closing rather than
-              allowing them to fall out of the pipeline.
-            </p>
+            <!-- Intro -->
+            <div class="card">
+                <div class="sectiontitle">Overview</div>
+                <p>
+                    This dashboard provides a comprehensive view of mortgage pipeline performance across branches.
+                    It highlights funded volume, fallout behavior, borrower characteristics, and branch level trends.
+                    The objective is to understand how market conditions, borrower profiles, and operational execution
+                    shape overall production.
+                </p>
+            </div>
 
-            <p>
-              Charlotte shows the opposite behavior. It has the highest fallout rate while maintaining a lower
-              suspension rate. Borrowers in this market appear more likely to cancel outright rather than enter
-              a suspended status. This may reflect borrower sensitivity to rate movement, competitive pressure,
-              or local market dynamics where borrowers have more alternatives and are quicker to exit when terms
-              or timing do not align with expectations.
-            </p>
+            <!-- KPIs -->
+            <div class="card">
+                <div class="sectiontitle">Key KPIs</div>
 
-            <p>
-              Retail production outperforms wholesale in both funded volume and borrower quality. Retail loans
-              show higher average loan amounts, lower LTV, lower DTI, and stronger FICO scores. Wholesale loans
-              exhibit higher fallout, which may reflect less direct borrower engagement, greater sensitivity to
-              pricing, or more aggressive comparison shopping. This distinction underscores the importance of
-              channel strategy when evaluating pipeline performance and forecasting revenue.
-            </p>
+                <ul>
+                    <li><strong>Total funded loan amount:</strong> 3.64 billion dollars</li>
+                    <li><strong>Funded loans:</strong> 8479</li>
+                    <li><strong>Funded rate:</strong> 73.96 percent</li>
+                    <li><strong>Withdrawn loans:</strong> 2337</li>
+                    <li><strong>Withdrawn rate:</strong> 20.38 percent</li>
+                    <li><strong>Suspended loans:</strong> 649</li>
+                    <li><strong>Suspended rate:</strong> 5.66 percent</li>
+                    <li><strong>Average loan amount:</strong> 427870 dollars</li>
+                    <li><strong>Average FICO:</strong> 719.25</li>
+                    <li><strong>Average LTV:</strong> 79.61 percent</li>
+                    <li><strong>Average DTI:</strong> 35.55 percent</li>
+                </ul>
+            </div>
 
-            <p>
-              Atlanta displays the strongest borrower characteristics across the network. Its loans show higher
-              average amounts, lower leverage, lower DTI, and higher FICO scores. This combination suggests a
-              healthier borrower base and potentially lower long term credit risk. Although Atlanta does not
-              lead in total volume, its quality profile positions it as a branch with strong risk adjusted value.
-            </p>
+            <!-- Key Insights -->
+            <div class="card">
+                <div class="sectiontitle">Key Insights</div>
 
-            <p>
-              Withdrawn loans cluster in the middle of the FICO distribution rather than at the lowest end.
-              A significant share of withdrawals occurs between FICO 650 and 750, which challenges the assumption
-              that weaker credit is the primary driver of fallout. Mid tier borrowers may be more sensitive to
-              rate changes, qualification uncertainty, or competing offers, and may have enough optionality to
-              step away from a transaction when conditions shift.
-            </p>
+                <ul>
+                    <li><strong>Los Angeles leads in funded volume.</strong> This is driven largely by higher property values rather than purely superior operational performance.</li>
 
-            <p>
-              LTV appears to influence withdrawal behavior more than FICO. Loans in the 85 to 90 percent LTV
-              range show the highest withdrawal percentage, while loans above 95 percent LTV show the lowest.
-              One interpretation is that loans with lower LTV are more often associated with specific programs
-              or first time homebuyer structures that introduce additional complexity and conditions. Borrowers
-              with higher leverage may be more committed to the transaction and less likely to exit once they
-              are in process.
-            </p>
+                    <li><strong>Charlotte performs strongly relative to its market.</strong> It produces competitive funded volume in a more modest housing environment, suggesting operational efficiency.</li>
 
-            <p>
-              Funding timelines remain consistent across branches. The average time from lock to funding varies
-              only slightly, which indicates a stable and predictable fulfillment process. This consistency is
-              a strength when setting expectations with borrowers and referral partners and suggests that the
-              organization has effective process control in its closing and funding operations.
-            </p>
+                    <li><strong>Chicago shows the highest suspension rate.</strong> Suspended loans are often recovered, indicating effective loan officer engagement.</li>
 
-            <p>
-              Overall, branch performance is tightly grouped. Closed rates across branches fall within a narrow
-              band, which indicates that the organization has standardized processes and that differences in
-              outcomes are driven more by market conditions, borrower mix, and channel strategy than by uneven
-              execution. This provides a solid foundation for targeted optimization rather than broad process
-              redesign.
-            </p>
-          </section>
+                    <li><strong>Charlotte has the highest fallout rate.</strong> Borrowers tend to cancel outright rather than enter suspended status.</li>
 
-          <!-- Technical Context -->
-          <section class="pipeline-technical">
-            <h2>Technical Context</h2>
+                    <li><strong>Retail outperforms wholesale.</strong> Retail loans show stronger borrower profiles and lower fallout.</li>
 
-            <p>
-              This dashboard is built on a star schema with a central fact table that captures loan pipeline
-              events and dimension tables for borrower attributes, branch information, channel, and loan officer
-              assignments. Measures such as funded rate, fallout rate, suspension rate, and average loan amount
-              are implemented using DAX to ensure accurate filtering across branches, channels, and borrower
-              segments. The model supports interactive filtering by branch, channel, and CLTV group, enabling
-              users to move from high level trends to specific segments without sacrificing performance.
-            </p>
-          </section>
+                    <li><strong>Atlanta displays the strongest borrower profiles.</strong> Higher loan amounts, lower leverage, and stronger credit quality define this branch.</li>
+
+                    <li><strong>Withdrawals cluster in mid tier FICO ranges.</strong> This challenges the assumption that weaker credit drives fallout.</li>
+
+                    <li><strong>LTV influences fallout more than FICO.</strong> The highest fallout occurs in the eighty five to ninety percent LTV band.</li>
+
+                    <li><strong>Funding timelines are consistent across branches.</strong> This suggests standardized fulfillment processes.</li>
+
+                    <li><strong>Branch performance is tightly grouped.</strong> Closed rates vary only slightly, indicating strong process control.</li>
+                </ul>
+            </div>
+
+            <!-- Narrative -->
+            <div class="card">
+                <div class="sectiontitle">Narrative Analysis</div>
+
+                <p>
+                    Los Angeles produces the largest funded volume in the network. This aligns with expectations given
+                    the higher property values in that market. When adjusting for market size, Charlotte emerges as a
+                    standout performer. It generates competitive funded volume in a more modest housing environment,
+                    which suggests that its results are driven by operational efficiency rather than market inflation.
+                </p>
+
+                <p>
+                    Chicago records the highest suspension rate. This pattern can indicate friction in documentation
+                    or underwriting, yet the branch does not show a corresponding spike in withdrawals. Instead, loans
+                    are frequently suspended and then recovered. This suggests that loan officers and operations teams
+                    are actively working suspended files and successfully moving them toward closing.
+                </p>
+
+                <p>
+                    Charlotte shows the opposite behavior. It has the highest fallout rate while maintaining a lower
+                    suspension rate. Borrowers in this market appear more likely to cancel outright rather than enter
+                    suspended status. This may reflect borrower sensitivity to rate movement or competitive pressure.
+                </p>
+
+                <p>
+                    Retail production outperforms wholesale in both funded volume and borrower quality. Retail loans
+                    show higher average loan amounts, lower leverage, lower DTI, and stronger FICO scores. Wholesale
+                    loans exhibit higher fallout, which may reflect less direct borrower engagement or greater pricing
+                    sensitivity.
+                </p>
+
+                <p>
+                    Atlanta displays the strongest borrower characteristics across the network. Its loans show higher
+                    average amounts, lower leverage, lower DTI, and higher FICO scores. This suggests a healthier
+                    borrower base and lower long term credit risk.
+                </p>
+
+                <p>
+                    Withdrawn loans cluster in the middle of the FICO distribution rather than at the lowest end.
+                    Borrowers in the mid tier may be more sensitive to rate changes or qualification uncertainty.
+                </p>
+
+                <p>
+                    LTV appears to influence withdrawal behavior more than FICO. Loans in the eighty five to ninety
+                    percent LTV range show the highest withdrawal percentage, while loans above ninety five percent
+                    show the lowest.
+                </p>
+
+                <p>
+                    Funding timelines remain consistent across branches. This indicates a stable and predictable
+                    fulfillment process and strong operational control.
+                </p>
+            </div>
+
+            <!-- Technical Context -->
+            <div class="card">
+                <div class="sectiontitle">Technical Context</div>
+
+                <p>
+                    This dashboard is built on a star schema with a central fact table that captures loan pipeline
+                    events and dimension tables for borrower attributes, branch information, channel, and loan officer
+                    assignments. Measures such as funded rate, fallout rate, suspension rate, and average loan amount
+                    are implemented using DAX to ensure accurate filtering across branches and borrower segments.
+                </p>
+            </div>
 
         </div>
-      </main>
+    </main>
 
-    </div>
-  </body>
+    <footer>
+        © 2026 Jason Hinshaw
+    </footer>
+
+</div>
+</body>
 </html>
+
