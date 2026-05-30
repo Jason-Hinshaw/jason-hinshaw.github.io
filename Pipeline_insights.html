@@ -305,9 +305,10 @@
                 <div class="sectiontitle">Narrative Analysis</div>
 
                 <p>
-                    Los Angeles produces the largest funded volume in the network. This aligns with expectations given
-                    the higher property values in that market. When adjusting for market size, Charlotte emerges as a
-                    standout performer. It generates competitive funded volume in a more modest housing environment,
+                    Los Angeles produces the largest funded volume in the network. Los Angeles also has closed
+                    the most loans relative to other branches. This aligns with expectations give the higher property 
+                    values in that market. When adjusting for market size, as well as inflation, Charlotte emerges as 
+                    a standout performer. Charlotte generates competitive funded volume in a more modest housing environment,
                     which suggests that its results are driven by operational efficiency rather than market inflation.
                 </p>
 
@@ -321,50 +322,78 @@
                 <p>
                     Charlotte shows the opposite behavior. It has the highest fallout rate while maintaining a lower
                     suspension rate. Borrowers in this market appear more likely to cancel outright rather than enter
-                    suspended status. This may reflect borrower sensitivity to rate movement or competitive pressure.
+                    suspended status. This may reflect borrower sensitivity to rate movement or competitive pressure. This 
+                    may also speak to lower conflict resolution amongst Charlotte loan officers and operational teams.
                 </p>
 
                 <p>
-                    Retail production outperforms wholesale in both funded volume and borrower quality. Retail loans
+                    Retail production outperforms wholesale in both funded volume and the strength of Borrower profiles. Retail loans
                     show higher average loan amounts, lower leverage, lower DTI, and stronger FICO scores. Wholesale
                     loans exhibit higher fallout, which may reflect less direct borrower engagement or greater pricing
-                    sensitivity.
+                    sensitivity. This may also reflect borrower preference, as stronger‑profile borrowers often gravitate toward larger, 
+                    branded lenders rather than smaller broker shops.
                 </p>
 
                 <p>
-                    Atlanta displays the strongest borrower characteristics across the network. Its loans show higher
-                    average amounts, lower leverage, lower DTI, and higher FICO scores. This suggests a healthier
+                    Atlanta displays the strongest borrower profile across the branches. Its loans show higher
+                    average amounts, lower LTV, lower DTI, and higher FICO scores. This suggests a healthier
                     borrower base and lower long term credit risk.
                 </p>
 
                 <p>
                     Withdrawn loans cluster in the middle of the FICO distribution rather than at the lowest end.
                     Borrowers in the mid tier may be more sensitive to rate changes or qualification uncertainty.
+                    This finding contradicts the idea that fallout is heavily skewed towards lower FICO borrowers.
+                    
                 </p>
 
                 <p>
-                    LTV appears to influence withdrawal behavior more than FICO. Loans in the eighty five to ninety
-                    percent LTV range show the highest withdrawal percentage, while loans above ninety five percent
-                    show the lowest.
+                    LTV appears to influence withdrawal behavior more than FICO. Loans in the 85–90% LTV range show the highest
+                    withdrawal percentage, while loans in the 95%+ LTV range have the lowest. This pattern, along with broader
+                    market trends, suggests that borrowers above 95% LTV are often in first‑time homebuyer or high‑LTV programs
+                    and therefore have fewer options to shop the market, making them less likely to withdraw.
                 </p>
+
 
                 <p>
                     Funding timelines remain consistent across branches. This indicates a stable and predictable
-                    fulfillment process and strong operational control.
+                    fulfillment process and strong operational control. Atlanta currently has the longest lock to funding
+                    time while Chicago currently has the lowest lock to funding time.
                 </p>
             </div>
 
-            <!-- Technical Context -->
-            <div class="card">
-                <div class="sectiontitle">Technical Context</div>
+          <!-- Technical Context -->
+<div class="card">
 
-                <p>
-                    This dashboard is built on a star schema with a central fact table that captures loan pipeline
-                    events and dimension tables for borrower attributes, branch information, channel, and loan officer
-                    assignments. Measures such as funded rate, fallout rate, suspension rate, and average loan amount
-                    are implemented using DAX to ensure accurate filtering across branches and borrower segments.
-                </p>
-            </div>
+    <style>
+        .sectiontitle {
+            text-align: center;
+        }
+    </style>
+
+    <div class="sectiontitle">Technical Context</div>
+
+    <p>
+        This project was built end‑to‑end, starting with data generation and ending with a fully deployed portfolio
+        site. I began by creating market‑accurate synthetic datasets in Python to simulate employee records, loan
+        pipeline activity, and extension behavior. After generating the raw data, I cleaned and standardized each
+        dataset in Jupyter Notebook, then loaded the processed tables into a SQL database.
+    </p>
+
+    <p>
+        From there, I wrote SQL queries to model the data and prepare it for analysis in Power BI. Once the data was
+        connected, I built the reporting layer using more than 25 custom DAX measures to calculate funded rate,
+        fallout rate, suspension behavior, borrower characteristics, and operational performance across branches and
+        channels.
+    </p>
+
+    <p>
+        The final dashboards were designed in Power BI and exported into a custom portfolio site that I built using
+        HTML and GitHub Pages. The site presents the analysis, visuals, and insights in a clean, interactive format
+        suitable for professional review.
+    </p>
+</div>
+
 
         </div>
     </main>
