@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan Officer Performance Deep Dive</title>
+
+    <style>
+        /* ---------- Root Theme Variables ---------- */
+        :root {
+            --bg: #0d1117;
+            --cardbg: #161b22;
+            --border: #30363d;
+            --textmain: #e6edf3;
+            --textmuted: #9ba3b4;
+            --accent: #58a6ff;
+            --radius: 8px;
+            --shadow: 0 0 20px rgba(0,0,0,0.35);
+        }
+
+        /* ---------- Global Reset ---------- */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--textmain);
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* ---------- Navigation ---------- */
+        header {
+            background: var(--cardbg);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navleft {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            background: var(--accent);
+            color: #000;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .navtitlemain {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .navtitlesub {
+            font-size: 0.85rem;
+            color: var(--textmuted);
+        }
+
+        .navlinks a {
+            margin-left: 20px;
+            color: var(--textmain);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .navlinks a:hover {
+            color: var(--accent);
+        }
+
+        /* ---------- Page Container ---------- */
+        .page-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem 2rem 1.5rem;
+        }
+
+        /* ---------- Titles ---------- */
+        .pagetitle {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--textmain);
+        }
+
+        .sectiontitle {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        /* ---------- Hero Image ---------- */
+        .hero-image {
+            width: 100%;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+
+        /* ---------- Download Link ---------- */
+        .download-link {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .download-link a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .download-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- Card Layout ---------- */
+        .card {
+            background: var(--cardbg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem 2rem;
+            margin-bottom: 1.75rem;
+            box-shadow: var(--shadow);
+        }
+
+        /* ---------- Overview Card ---------- */
+        .overview-card {
+            border-left: 4px solid var(--accent);
+        }
+
+        .overview-card p {
+            margin-bottom: 1rem;
+            color: var(--textmuted);
+            max-width: 900px;
+        }
+
+        /* ---------- Paragraph Styling ---------- */
+        .card p {
+            margin-bottom: 1rem;
+            color: var(--textmain);
+            font-size: 0.95rem;
+        }
+
+        /* ---------- KPI Grid ---------- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 32px;
+            padding-left: 20px;
+        }
+
+        .kpi-grid li {
+            margin: 0;
+            list-style: disc;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 800px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 800px) {
+            .pagetitle {
+                font-size: 1.6rem;
+            }
+
+            .card {
+                padding: 1.25rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- FULL SITE NAVIGATION -->
+    <header>
+        <div class="container">
+            <div class="nav">
+                <div class="navleft">
+                    <div class="avatar">JH</div>
+                    <div>
+                        <div class="navtitlemain">Jason Hinshaw</div>
+                        <div class="navtitlesub">Analytics and BI Portfolio</div>
+                    </div>
+                </div>
+
+                <div class="navlinks">
+                    <a href="index.html#aboutme">About</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#dashboards">Dashboards</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="resume.html">Resume</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-container">
+
+        <!-- Page Title -->
+        <h1 class="pagetitle">Loan Officer Performance Deep Dive</h1>
+
+        <!-- Screenshot -->
+        <img src="Assets/Loan Officer Performance.png" alt="Loan Officer Performance Dashboard" class="hero-image">
+
+        <!-- PDF Download -->
+        <p class="download-link">
+            <a href="Assets/Hinshaw Mortgage - PDF.pdf" target="_blank" rel="noopener">
+                Download Full Dashboard PDF
+            </a>
+        </p>
+
+        <!-- Overview -->
+        <div class="card overview-card">
+            <div class="sectiontitle">Overview</div>
+
+            <p>
+                <!-- Insert your overview text here -->
+            </p>
+        </div>
+
+        <!-- Key KPIs -->
+        <div class="card">
+            <div class="sectiontitle">Key KPIs</div>
+
+            <ul class="kpi-grid">
+                <li><strong>Highest Funded Volume:</strong> [placeholder]</li>
+                <li><strong>Highest Close %:</strong> [placeholder]</li>
+                <li><strong>Lowest Fallout %:</strong> [placeholder]</li>
+                <li><strong>Lowest Extension %:</strong> [placeholder]</li>
+                <li><strong>Fastest App → Close:</strong> [placeholder]</li>
+            </ul>
+        </div>
+
+        <!-- Key Insights -->
+        <div class="card">
+            <div class="sectiontitle">Key Insights</div>
+
+            <p>
+                <!-- Insert your insights here -->
+            </p>
+        </div>
+
+        <!-- Narrative Analysis -->
+        <div class="card">
+            <div class="sectiontitle">Narrative Analysis</div>
+
+            <p>
+                <!-- Insert your narrative analysis here -->
+            </p>
+        </div>
+
+        <!-- Technical Context -->
+        <div class="card">
+            <div class="sectiontitle">Technical Context</div>
+
+            <p>
+                <!-- Insert your technical context here -->
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
