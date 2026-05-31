@@ -1,136 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>About Me - Jason Hinshaw</title>
+    <meta charset="UTF-8">
+    <title>About Me - Jason Hinshaw</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style>
-/* GLOBAL PAGE LAYOUT */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f0f0f;
-    color: #e6e6e6;
-}
+    <!-- USES THE SAME CSS SYSTEM AS YOUR HOMEPAGE -->
+    <style>
+        :root {
+            --bg: #050816;
+            --bgalt: #0b1020;
+            --accent: #385ef8;
+            --textmain: #e5e7eb;
+            --textmuted: #9ca3af;
+            --cardbg: #0f172a;
+            --border: #1f2937;
+        }
 
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-.page {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+        body {
+            background: #020617;
+            color: var(--textmain);
+        }
 
-/* HEADER */
-header {
-    background: #111;
-    padding: 1rem 0;
-    border-bottom: 1px solid #222;
-}
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-.navleft {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
-.avatar {
-    width: 42px;
-    height: 42px;
-    background: #444;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-}
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            background: #0f172a;
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 0;
+            z-index: 10;
+        }
 
-.navtitlemain {
-    font-size: 1.2rem;
-    font-weight: 600;
-}
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.navtitlesub {
-    font-size: 0.85rem;
-    opacity: 0.7;
-}
+        .navleft {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-.navlinks a {
-    margin-left: 1.5rem;
-    text-decoration: none;
-    color: #ddd;
-    font-size: 0.95rem;
-}
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #38bdf8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: black;
+        }
 
-.navlinks a:hover {
-    color: #fff;
-}
+        .navtitlemain {
+            font-size: 1rem;
+            font-weight: bold;
+        }
 
-/* ABOUT PAGE GRID */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 350px;
-    gap: 2.5rem;
-    margin-top: 3rem;
-    margin-bottom: 4rem;
-}
+        .navtitlesub {
+            font-size: 0.75rem;
+            color: var(--textmuted);
+        }
 
-/* TEXT STYLING */
-.about-title {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
+        .navlinks {
+            display: flex;
+            gap: 1.25rem;
+        }
 
-.about-tagline {
-    font-size: 1rem;
-    opacity: 0.7;
-    margin-bottom: 1.5rem;
-}
+        /* ABOUT PAGE GRID */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 2rem;
+            padding: 3rem 0;
+        }
 
-.about-text {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
+        @media (max-width: 800px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
-/* RIGHT PANEL STATIC IMAGE */
-.panel {
-    background: #1a1a1a;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #333;
-    height: fit-content;
-}
+        /* TEXT */
+        .about-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
 
-.panel strong {
-    display: block;
-    margin-bottom: 0.75rem;
-}
+        .about-tagline {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
 
-.static-thumb {
-    width: 100%;
-    border-radius: 6px;
-    border: 1px solid #333;
-}
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            color: var(--textmuted);
+        }
 
-/* FOOTER */
-footer {
-    margin-top: auto;
-    padding: 1rem 0;
-    text-align: center;
-    opacity: 0.7;
-    font-size: 0.9rem;
-}
-</style>
+        /* RIGHT PANEL */
+        .panel {
+            background: var(--bgalt);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        .panel strong {
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .static-thumb {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 1.5rem 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--textmuted);
+            margin-top: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -161,7 +191,7 @@ footer {
 <main>
     <div class="container about-grid">
 
-        <!-- LEFT SIDE: ABOUT ME TEXT -->
+        <!-- LEFT SIDE -->
         <div>
             <h2 class="about-title">About Me</h2>
             <p class="about-tagline">Data Analytics • BI • SQL • Power BI</p>
@@ -190,7 +220,7 @@ footer {
             </p>
         </div>
 
-        <!-- RIGHT SIDE: STATIC IMAGE PANEL -->
+        <!-- RIGHT SIDE -->
         <div class="panel">
             <strong>About Me</strong>
             <img src="Assets/AboutMePhoto.png" class="static-thumb" alt="About Me Image">
@@ -203,11 +233,11 @@ footer {
     © <span id="year"></span> Jason Hinshaw • Analytics and BI Portfolio
 </footer>
 
-</div>
-
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
+</div>
 </body>
 </html>
+
