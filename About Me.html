@@ -3,17 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>About Me - Jason Hinshaw</title>
-<link rel="stylesheet" href="styles.css">
 
 <style>
-/* PAGE LAYOUT */
+/* GLOBAL PAGE LAYOUT */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: #e6e6e6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
 .page {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* NAVIGATION */
+/* HEADER */
 header {
     background: #111;
     padding: 1rem 0;
@@ -64,12 +76,13 @@ header {
     color: #fff;
 }
 
-/* GRID LAYOUT FOR ABOUT PAGE */
+/* ABOUT PAGE GRID */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 350px;
-    gap: 2rem;
+    gap: 2.5rem;
     margin-top: 3rem;
+    margin-bottom: 4rem;
 }
 
 /* TEXT STYLING */
@@ -95,6 +108,7 @@ header {
     padding: 1rem;
     border-radius: 8px;
     border: 1px solid #333;
+    height: fit-content;
 }
 
 .panel strong {
@@ -197,4 +211,3 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 </body>
 </html>
-
