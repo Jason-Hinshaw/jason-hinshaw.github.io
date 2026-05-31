@@ -266,26 +266,25 @@
 
             <div class="herosub">
 
-    Did you know that companies that embrace data‑driven decision‑making are 
-    <strong>23× more likely to acquire new customers</strong>, 
-    <strong>6× more likely to retain them</strong>, 
-    and <strong>19× more likely to be profitable</strong>?
+                Did you know that companies that embrace data‑driven decision‑making are 
+                <strong>23× more likely to acquire new customers</strong>, 
+                <strong>6× more likely to retain them</strong>, 
+                and <strong>19× more likely to be profitable</strong>?
 
-    <br><br>
+                <br><br>
 
-    According to McKinsey, organizations that leverage analytics effectively can 
-    increase their operating margins by <strong>up to 60%</strong>.
+                According to McKinsey, organizations that leverage analytics effectively can 
+                increase their operating margins by <strong>up to 60%</strong>.
 
-    <br><br>
+                <br><br>
 
-    Data has become one of the most valuable assets a business owns — but like crude oil, 
-    it only becomes powerful once it’s refined, structured, and transformed into something usable.
+                Data has become one of the most valuable assets a business owns — but like crude oil, 
+                it only becomes powerful once it’s refined, structured, and transformed into something usable.
 
-    <br><br>
+                <br><br>
 
-    <strong>That’s what I do:</strong> I turn raw, messy data into clear, actionable insight that teams can actually act on.
-</div>
-
+                <strong>That’s what I do:</strong> I turn raw, messy data into clear, actionable insight that teams can actually act on.
+            </div>
 
             <span class="tag">SQL</span>
             <span class="tag">Power BI</span>
@@ -295,87 +294,71 @@
         </div>
 
         <!-- HERO RIGHT PANEL WITH ROTATING DASHBOARD PREVIEW -->
-<div class="panel">
-    <strong>Featured Dashboards</strong>
+        <div class="panel">
+            <strong>Featured Dashboards</strong>
 
-    <a id="dashboardLink" href="Pipeline_insights.html">
-        <img id="dashboardRotator" 
-             src="Assets/Pipeline Insights.png" 
-             class="mini-thumb" 
-             alt="Dashboard Preview">
-    </a>
-</div>
+            <a id="dashboardLink" href="Pipeline_insights.html">
+                <img id="dashboardRotator" 
+                     src="Assets/Pipeline Insights.png" 
+                     class="mini-thumb" 
+                     alt="Dashboard Preview">
+            </a>
+        </div>
 
-<style>
-/* Thumbnail styling */
-.mini-thumb {
-    width: 100%;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    margin-top: 0.75rem;
-    cursor: pointer;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-}
-</style>
+        <style>
+        /* Thumbnail styling */
+        .mini-thumb {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            margin-top: 0.75rem;
+            cursor: pointer;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        </style>
 
-<script>
-// Dashboard images + links
-const images = [
-    {
-        src: "Assets/Pipeline Insights.png",
-        link: "Pipeline_insights.html"
-    },
-    {
-        src: "Assets/Loan Officer Performance.png",
-        link: "Loan_Officer_Performance.html"
-    },
-    {
-        src: "Assets/Extension Insights.png",
-        link: "Extension_Insights.html"
-    }
-];
+        <script>
+        // Dashboard images + links
+        const images = [
+            {
+                src: "Assets/Pipeline Insights.png",
+                link: "Pipeline_insights.html"
+            },
+            {
+                src: "Assets/Loan Officer Performance.png",
+                link: "Loan_Officer_Performance.html"
+            },
+            {
+                src: "Assets/Extension Insights.png",
+                link: "Extension_Insights.html"
+            }
+        ];
 
-let index = 0;
-const rotator = document.getElementById("dashboardRotator");
-const link = document.getElementById("dashboardLink");
+        let index = 0;
+        const rotator = document.getElementById("dashboardRotator");
+        const link = document.getElementById("dashboardLink");
 
-// Rotate every 6 seconds
-function rotateImage() {
-    index = (index + 1) % images.length;
+        // Rotate every 6 seconds
+        function rotateImage() {
+            index = (index + 1) % images.length;
 
-    // Fade out
-    rotator.style.opacity = 0;
+            // Fade out
+            rotator.style.opacity = 0;
 
-    setTimeout(() => {
-        // Swap image + link
-        rotator.src = images[index].src;
-        link.href = images[index].link;
+            setTimeout(() => {
+                // Swap image + link
+                rotator.src = images[index].src;
+                link.href = images[index].link;
 
-        // Fade in
-        rotator.style.opacity = 1;
-    }, 500);
-}
+                // Fade in
+                rotator.style.opacity = 1;
+            }, 500);
+        }
 
-setInterval(rotateImage, 6000);
-</script>
+        setInterval(rotateImage, 6000);
+        </script>
 
-
-    </div>
-</section>
-
-<!-- NEW HOMEPAGE INTRO SECTION -->
-<section id="homepage-intro">
-    <div class="container about-container">
-        <p class="about-text">
-            Welcome to my analytics portfolio — a collection of end‑to‑end BI workflows, SQL modeling,
-            and interactive Power BI dashboards built around a fully synthetic mortgage company.
-        </p>
-
-        <p class="about-text">
-            Use the navigation above to explore my dashboards, projects, and background. Each dashboard
-            includes a detailed deep‑dive page with KPIs, insights, narrative analysis, and technical context.
-        </p>
     </div>
 </section>
 
@@ -436,10 +419,10 @@ setInterval(rotateImage, 6000);
 
         <p class="about-text" style="margin-bottom: 1.5rem;">
             Explore my full suite of Power BI dashboards, including pipeline performance, loan officer analytics,
-            and extension behavior. Each dashboard includes a detailed deep‑dive analysis.
+            and extension behavior. Each dashboard includes key KPIs, insights, and a detailed deep‑dive analysis.
         </p>
 
-        <a href="Dashboards.html" class="btn">Click here for Dashboards & Detailed Analysis</a>
+        <a href="dashboards.html" class="btn">Click here for Dashboards & Detailed Analysis</a>
     </div>
 </section>
 
@@ -464,6 +447,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 </body>
 </html>
+
 
 
 
