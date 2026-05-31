@@ -276,21 +276,72 @@
             <button class="btn">View featured project</button>
         </div>
 
-        <div class="panel">
+        <!-- HERO RIGHT PANEL WITH ROTATING DASHBOARD PREVIEW -->
+<div class="panel">
     <strong>Featured Dashboards</strong>
 
-    <a href="Pipeline_insights.html">
-        <img src="Assets/Pipeline Insights.png" class="mini-thumb" alt="Pipeline Insights">
-    </a>
-
-    <a href="Loan_Officer_Performance.html">
-        <img src="Assets/Loan Officer Performance.png" class="mini-thumb" alt="Loan Officer Performance">
-    </a>
-
-    <a href="Extension_Insights.html">
-        <img src="Assets/Extension Insights.png" class="mini-thumb" alt="Extension Deep Dive">
+    <a id="dashboardLink" href="Pipeline_insights.html">
+        <img id="dashboardRotator" 
+             src="Assets/Pipeline Insights.png" 
+             class="mini-thumb" 
+             alt="Dashboard Preview">
     </a>
 </div>
+
+<style>
+/* Thumbnail styling */
+.mini-thumb {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    margin-top: 0.75rem;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+</style>
+
+<script>
+// Dashboard images + links
+const images = [
+    {
+        src: "Assets/Pipeline Insights.png",
+        link: "Pipeline_insights.html"
+    },
+    {
+        src: "Assets/Loan Officer Performance.png",
+        link: "Loan_Officer_Performance.html"
+    },
+    {
+        src: "Assets/Extension Insights.png",
+        link: "Extension_Insights.html"
+    }
+];
+
+let index = 0;
+const rotator = document.getElementById("dashboardRotator");
+const link = document.getElementById("dashboardLink");
+
+// Rotate every 6 seconds
+function rotateImage() {
+    index = (index + 1) % images.length;
+
+    // Fade out
+    rotator.style.opacity = 0;
+
+    setTimeout(() => {
+        // Swap image + link
+        rotator.src = images[index].src;
+        link.href = images[index].link;
+
+        // Fade in
+        rotator.style.opacity = 1;
+    }, 500);
+}
+
+setInterval(rotateImage, 6000);
+</script>
+
 
     </div>
 </section>
