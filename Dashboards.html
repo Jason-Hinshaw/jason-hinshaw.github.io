@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboards</title>
+
+    <style>
+        /* ---------- Root Theme Variables ---------- */
+        :root {
+            --bg: #0d1117;
+            --cardbg: #161b22;
+            --border: #30363d;
+            --textmain: #e6edf3;
+            --textmuted: #9ba3b4;
+            --accent: #58a6ff;
+            --radius: 8px;
+            --shadow: 0 0 20px rgba(0,0,0,0.35);
+        }
+
+        /* ---------- Global Reset ---------- */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--textmain);
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* ---------- Navigation ---------- */
+        header {
+            background: var(--cardbg);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navleft {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            background: var(--accent);
+            color: #000;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .navtitlemain {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .navtitlesub {
+            font-size: 0.85rem;
+            color: var(--textmuted);
+        }
+
+        .navlinks a {
+            margin-left: 20px;
+            color: var(--textmain);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .navlinks a:hover {
+            color: var(--accent);
+        }
+
+        /* ---------- Page Container ---------- */
+        .page-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem 2rem 1.5rem;
+        }
+
+        /* ---------- Titles ---------- */
+        .pagetitle {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--textmain);
+        }
+
+        /* ---------- Card Layout ---------- */
+        .card {
+            background: var(--cardbg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem 2rem;
+            margin-bottom: 1.75rem;
+            box-shadow: var(--shadow);
+        }
+
+        .card h3 a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .card h3 a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- Dashboard Images ---------- */
+        .hero-image {
+            width: 100%;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 800px) {
+            .pagetitle {
+                font-size: 1.6rem;
+            }
+
+            .card {
+                padding: 1.25rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="nav">
+            <div class="navleft">
+                <div class="avatar">JH</div>
+                <div>
+                    <div class="navtitlemain">Jason Hinshaw</div>
+                    <div class="navtitlesub">Analytics and BI Portfolio</div>
+                </div>
+            </div>
+
+            <div class="navlinks">
+                <a href="index.html#aboutme">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="dashboards.html">Dashboards</a>
+                <a href="contact.html">Contact</a>
+                <a href="resume.html">Resume</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="page-container">
+
+    <h1 class="pagetitle">Dashboards</h1>
+
+    <!-- Pipeline Insights -->
+    <div class="card">
+        <h3><a href="Pipeline_insights.html">Pipeline Insights Dashboard</a></h3>
+        <a href="Pipeline_insights.html">
+            <img src="Assets/Pipeline Insights.png" 
+                 alt="Pipeline Insights Dashboard" 
+                 class="hero-image">
+        </a>
+    </div>
+
+    <!-- Loan Officer Performance -->
+    <div class="card">
+        <h3><a href="Loan_Officer_Performance.html">Loan Officer Performance Deep Dive</a></h3>
+        <a href="Loan_Officer_Performance.html">
+            <img src="Assets/Loan Officer Performance.png" 
+                 alt="Loan Officer Performance Dashboard" 
+                 class="hero-image">
+        </a>
+    </div>
+
+    <!-- Extension Deep Dive -->
+    <div class="card">
+        <h3><a href="Extension_Insights.html">Extension Deep Dive Dashboard</a></h3>
+        <a href="Extension_Insights.html">
+            <img src="Assets/Extension Insights.png" 
+                 alt="Extension Deep Dive Dashboard" 
+                 class="hero-image">
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
