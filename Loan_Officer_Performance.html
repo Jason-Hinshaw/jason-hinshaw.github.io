@@ -431,8 +431,25 @@ coaching can improve both borrower experience and profitability.
             <div class="sectiontitle">Technical Context</div>
 
             <p>
-                <!-- Insert your technical context here -->
-            </p>
+<p>
+This dashboard builds on the same end‑to‑end data pipeline used throughout the project, starting with synthetic data generation in Python and ending with a fully deployed portfolio site. After creating and cleaning the datasets 
+in Jupyter Notebook, the data was loaded into SQL for modeling and then brought into Power BI for reporting. The foundation is the same, but this page adds an additional layer of complexity centered around evaluating loan officer performance.
+</p>
+
+<p>
+To move beyond simple production rankings, I developed a custom Performance Score using Python (pandas, numpy, and matplotlib) to test weighting scenarios and validate how different operational behaviors influence overall performance. 
+The score blends production metrics with fallout, extensions, and conversion efficiency to create a more balanced view of how effectively each loan officer manages their pipeline. Once the scoring logic was finalized, it was rebuilt in 
+Power BI using more than 25 custom DAX measures that calculate the operational components behind the score. The score was built to be inherently flexible, allowing weighting adjustments or new operational inputs to be incorporated without 
+restructuring the underlying model.
+</p>
+
+<p>
+The dashboard is designed to make these comparisons intuitive. Users can filter by loan officer or branch to see how performance shifts across different segments, and the quadrant chart visualizes how each officer balances production with efficiency. 
+By combining Python‑driven modeling with Power BI’s interactive reporting layer, the dashboard provides a clearer, more accurate way to compare loan officers than relying on funded volume alone.
+</p>
+
+</p>
+
         </div>
 
     </div>
