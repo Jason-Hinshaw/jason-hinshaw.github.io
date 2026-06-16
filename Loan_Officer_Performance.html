@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
     <title>Loan Officer Performance Deep Dive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- FULL SITE CSS (copied from Pipeline Insights page) -->
     <style>
-        /* ---------- Root Theme Variables ---------- */
         :root {
-            --bg: #0d1117;
-            --cardbg: #161b22;
-            --border: #30363d;
-            --textmain: #e6edf3;
-            --textmuted: #9ba3b4;
-            --accent: #58a6ff;
-            --radius: 8px;
-            --shadow: 0 0 20px rgba(0,0,0,0.35);
+            --bg: #050816;
+            --bgalt: #0b1020;
+            --accent: #385ef8;
+            --textmain: #e5e7eb;
+            --textmuted: #9ca3af;
+            --cardbg: #0f172a;
+            --border: #1f2937;
         }
 
-        /* ---------- Global Reset ---------- */
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background: var(--bg);
-            color: var(--textmain);
-            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        /* ---------- Navigation ---------- */
-        header {
-            background: var(--cardbg);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            margin-bottom: 2rem;
+        body {
+            background: #020617;
+            color: var(--textmain);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .container {
+            width: 100%;
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 1.5rem;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: #0f172a;
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 0;
+            z-index: 10;
         }
 
         .nav {
@@ -51,116 +65,89 @@
         .navleft {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 0.5rem;
         }
 
         .avatar {
-            background: var(--accent);
-            color: #000;
-            width: 42px;
-            height: 42px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
+            background: #38bdf8;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
+            color: black;
         }
 
         .navtitlemain {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
         }
 
         .navtitlesub {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--textmuted);
         }
 
-        .navlinks a {
-            margin-left: 20px;
-            color: var(--textmain);
-            text-decoration: none;
-            font-size: 0.95rem;
+        .navlinks {
+            display: flex;
+            gap: 1.25rem;
         }
 
-        .navlinks a:hover {
-            color: var(--accent);
-        }
-
-        /* ---------- Page Container ---------- */
-        .page-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem 2rem 1.5rem;
-        }
-
-        /* ---------- Titles ---------- */
-        .pagetitle {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--textmain);
-        }
-
-        .sectiontitle {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        /* ---------- Hero Image ---------- */
-        .hero-image {
-            width: 100%;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            margin-bottom: 1rem;
-        }
-
-        /* ---------- Download Link ---------- */
-        .download-link {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .download-link a {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 1rem;
-        }
-
-        .download-link a:hover {
-            text-decoration: underline;
-        }
-
-        /* ---------- Card Layout ---------- */
         .card {
             background: var(--cardbg);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.75rem 2rem;
-            margin-bottom: 1.75rem;
-            box-shadow: var(--shadow);
-        }
-
-        /* ---------- Overview Card ---------- */
-        .overview-card {
-            border-left: 4px solid var(--accent);
-        }
-
-        .overview-card p {
+            padding: 1rem;
+            border-radius: 8px;
             margin-bottom: 1rem;
-            color: var(--textmuted);
+        }
+
+        .sectiontitle {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hero-image {
+            width: 80%;
             max-width: 900px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            margin: 30px auto;
+            display: block;
         }
 
-        /* ---------- Paragraph Styling ---------- */
-        .card p {
+        footer {
+            padding: 1.5rem 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--textmuted);
+        }
+
+        /* Overview / Narrative / Technical cards */
+        .overview-card,
+        .narrative-card,
+        .technical-card {
+            padding: 1.75rem 2rem;
+            border-left: 4px solid var(--accent);
+            background: var(--cardbg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .overview-card p,
+        .narrative-card p,
+        .technical-card p {
             margin-bottom: 1rem;
+            line-height: 1.65;
             color: var(--textmain);
+            max-width: 900px;
             font-size: 0.95rem;
         }
 
-        /* ---------- KPI Grid ---------- */
+        /* KPI Grid */
         .kpi-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -180,22 +167,27 @@
             }
         }
 
-        /* ---------- Responsive ---------- */
-        @media (max-width: 800px) {
-            .pagetitle {
-                font-size: 1.6rem;
-            }
+        /* Insights list */
+        .insights-list {
+            margin: 0;
+            padding-left: 20px;
+        }
 
-            .card {
-                padding: 1.25rem 1.25rem;
-            }
+        .insights-list li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .insights-list strong {
+            font-weight: 600;
         }
     </style>
 </head>
 
 <body>
+<div class="page">
 
-    <!-- FULL SITE NAVIGATION -->
+    <!-- NAVIGATION -->
     <header>
         <div class="container">
             <div class="nav">
@@ -218,241 +210,224 @@
         </div>
     </header>
 
-    <div class="page-container">
-
-        <!-- Page Title -->
-        <h1 class="pagetitle">Loan Officer Performance Deep Dive</h1>
-
-        <!-- Screenshot -->
-        <img src="Assets/Loan Officer Performance.png" alt="Loan Officer Performance Dashboard" class="hero-image">
-
-        <!-- PDF Download -->
-        <p class="download-link">
-            <a href="Assets/Hinshaw Mortgage - PDF.pdf" target="_blank" rel="noopener">
-                Download Full Dashboard PDF
-            </a>
-        </p>
-
-        <!-- Overview -->
-        <div class="card overview-card">
-            <div class="sectiontitle">Overview</div>
-
-            <p>
-       Hinshaw Mortgage Group (a fictional mortgage company) has 24 loan officers operating across five branches, 
-       each with different market conditions, borrower types, and production expectations. Because of that, comparing 
-       loan officer performance isn’t as simple as looking at who closes the most loans or who has the best close rate. 
-       Every metric tells only part of the story, and relying on one of them creates a misleading picture of who’s actually 
-       performing well.
-    </p>
-
-    <p>
-        To solve this problem, I built the "Loan Officer Performance Score" metric. This metric works by evaluating both 
-        componenets of the loan officers job - generating production while maintaining pipeline efficiency. The score rewards 
-        the things that matter most—closing loans and driving volume—but it also accounts for the operational behaviors that directly 
-        impact profitability, like fallout, suspense, and extensions. Extensions cost the company money and often signal borrower frustration 
-        or weak pipeline management, so a true top performer shouldn’t just bring borrowers in the door—they should be able to convert them consistently.
-    </p>
-
-    <p>
-        With the score in place, the dashboard makes it easy to compare loan officers by plotting their Performance Score against their fallout and extension 
-        behavior. This naturally creates four quadrants that reflect real patterns in how loan officers work. Top Performers score high and keep fallout low—they 
-        close a lot of loans and move borrowers through the process efficiently. Volatile officers also produce volume, but their higher fallout or extension usage 
-        shows inconsistency in pipeline management. Underperformers maintain clean pipelines but struggle to generate meaningful production. And High‑Risk officers 
-        fall short on both sides, with low production and high fallout or extension rates. Because the quadrant lines are based on the team’s median performance score 
-        and median fallout rate, the chart adjusts to the actual distribution of the group, giving leaders a clear, honest view of where each loan officer stands.
-    </p>
-
-    <p>
-        By combining production metrics with pipeline efficiency, the dashboard turns performance into something measurable and comparable. It helps leaders quickly 
-        identify top performers, uncover hidden inefficiencies, and make informed decisions that strengthen both the borrower experience and overall profitability.
-    </p>
-        </div>
-
-        <!-- Key KPIs -->
-        <div class="card">
-            <div class="sectiontitle">Key KPIs</div>
-
-<ul class="kpi-grid">
-    <li><strong>Highest Funded Volume:</strong> Sophia Shaw – $330M</li>
-    <li><strong>Most Closed Loans:</strong> Sophia Shaw – 697 loans</li>
-    <li><strong>Highest Close Rate:</strong> Isabella Garcia – 78.30%</li>
-    <li><strong>Lowest Fallout Rate:</strong> Isabella Garcia – 16.80%</li>
-    <li><strong>Lowest Suspense Rate:</strong> Harper Johnson – 3.73%</li>
-    <li><strong>Lowest Extension Rate:</strong> Daniel Patel – 33%</li>
-    <li><strong>Fastest Lock‑to‑Close Timeline:</strong> Ava Turner – 36 days</li>
-    <li><strong>Highest Performance Score:</strong> Daniel Patel – 100</li>
-</ul>
-
-        </div>
-
-        <!-- Key Insights -->
-       <!-- Key Insights -->
-<div class="card">
-  <div class="sectiontitle">Key Insights</div>
-
-  <style>
-    .insights-list {
-      margin: 0;
-      padding-left: 20px; /* standard bullet indent */
-    }
-
-    .insights-list li {
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-    .insights-list strong {
-      font-weight: 600;
-    }
-  </style>
-  <ul class="insights-list">
-
-  <li>
-    <strong>Daniel Patel holds the highest Performance Score at 100.00.</strong>
-    His 385 closed loans, 76.23% close rate, and 33% extension rate make him the most balanced and efficient producer.
-  </li>
-
-  <li>
-    <strong>Charlotte leads all branches in average Performance Score.</strong>
-    Charlotte loan officers consistently score above the team median, reflecting strong conversion and disciplined pipeline management.
-  </li>
-
-  <li>
-    <strong>Dallas posts the lowest branch Performance Score.</strong>
-    Elevated fallout and extension rates across Dallas loan officers pull the branch to the bottom of the distribution.
-  </li>
-
-  <li>
-    <strong>Sophia Shaw closes the most loans (477) but carries a 39.97% extension rate.</strong>
-    She contributes 8.36% of total closed volume but also 8.30% of company‑wide extension cost, showing her efficiency does not scale with her production.
-  </li>
-
-  <li>
-    <strong>Emily Turner has the highest extension percentage at 40.15%.</strong>
-    This significantly increases operational cost and reduces her overall Performance Score despite strong production.
-  </li>
-
-  <li>
-    <strong>Top Performers combine high volume with low fallout.</strong>
-    Loan officers in this quadrant average close rates above 75% and fallout rates below 6%.
-  </li>
-
-  <li>
-    <strong>Volatile performers show strong production but elevated fallout or extensions.</strong>
-    Many exceed 350 closed loans but carry fallout rates above 21% or extension rates above 35%.
-  </li>
-
-  <li>
-    <strong>Underperformers maintain clean pipelines but lack production scale.</strong>
-    These loan officers typically close fewer than 260 loans annually despite low fallout.
-  </li>
-
-  <li>
-    <strong>High‑Risk loan officers fall below the median on both production and efficiency.</strong>
-    They combine low volume (<250 loans) with high fallout (>20%) or high extension usage (>35%).
-  </li>
-
-  <li>
-    <strong>Sophia Hernandez has the lowest Performance Score at 72.34.</strong>
-    Her 68.36% close rate, elevated suspense rate, and 24.64% fallout rate are the primary drivers of her low score.
-  </li>
-
-  <li>
-    <strong>Branch leaders highlight market‑specific strengths.</strong>
-    Top performers include Emily Turner (Atlanta), Harper Johnson (Charlotte), Mia Hernandez (Chicago), Isabella Garcia (Dallas), and Daniel Patel (Los Angeles).
-  </li>
-
-  <li>
-    <strong>Extensions remain a major cost driver across the team.</strong>
-    Loan officers with extension rates above 35% contribute disproportionately to the average $1,618 extension cost per loan.
-  </li>
-
-</ul>
-
-        </div>
-
-        <!-- Narrative Analysis -->
-        <div class="card">
-            <div class="sectiontitle">Narrative Analysis</div>
-
-            <p>
-                <p>
-The Performance Score highlights clear differences in how individual loan officers balance production with pipeline efficiency. 
-While several officers generate strong volume, only a subset convert that volume consistently. Daniel Patel represents the most 
-complete performance profile. His high close rate, low fallout, and disciplined extension usage indicate a pipeline that moves predictably 
-from application to funding. His results suggest strong borrower communication and effective coordination with operations, allowing him to maintain 
-both scale and efficiency.
-</p>
-
-<p>
-Isabella Garcia demonstrates a similar level of operational discipline. Her combination of the highest close rate and lowest fallout rate shows that 
-she manages borrower expectations effectively and resolves documentation issues early in the process. Her performance reflects a stable, low‑friction 
-pipeline where most borrowers who enter the funnel ultimately close.
-</p>
-
-<p>
-Other high‑volume loan officers show a different pattern. Sophia Shaw leads the team in closed loans, yet her elevated extension rate and disproportionate 
-share of extension cost indicate that her production requires more timeline adjustments and renegotiations. This suggests that while she excels at generating 
-demand, her pipeline experiences more volatility, which suppresses her overall Performance Score. Emily Turner shows a similar trend, with strong production offset 
-by high extension usage that introduces operational cost and borrower friction.
-</p>
-
-<p>
-The quadrant distribution reinforces these individual patterns. Top Performers combine high production with low fallout and controlled extension behavior, demonstrating 
-consistent borrower progression through the pipeline. Volatile performers generate meaningful volume but introduce operational risk through higher fallout or extension usage. 
-Underperformers maintain clean pipelines but lack production scale, while High‑Risk loan officers fall below the median on both dimensions, signaling the greatest opportunity 
-for coaching and process improvement.
-</p>
-
-<p>
-Loan officers with elevated fallout rates tend to experience borrower disengagement earlier in the process. This may reflect qualification uncertainty, rate sensitivity, or inconsistent 
-follow‑up. In contrast, officers with high extension usage typically keep borrowers engaged but require more time and operational resources to reach closing. These two behaviors impact the 
-Performance Score differently: fallout reduces conversion efficiency, while extensions increase cost and timeline variability.
-</p>
-
-<p>
-Extension behavior remains one of the strongest differentiators in Performance Score outcomes. Loan officers with extension rates above 35% contribute disproportionately to the company’s average 
-extension cost as well as overall extension cost. This pattern highlights the financial impact of pipeline inefficiency and underscores the importance of early documentation collection, accurate qualification, 
-and proactive borrower communication.
-</p>
-
-<p>
-Overall, the Performance Score provides a clearer view of loan officer effectiveness by combining production metrics with operational behavior. It highlights which officers generate sustainable, efficient volume 
-and which rely on heavier operational lift to close loans. This allows leaders to identify where strong performance is driven by disciplined pipeline management, where volume masks underlying friction, and where targeted 
-coaching can improve both borrower experience and profitability.
-</p>
-
-
-            </p>
-        </div>
-
-        <!-- Technical Context -->
-        <div class="card">
-            <div class="sectiontitle">Technical Context</div>
-
-            <p>
-<p>
-This dashboard builds on the same end‑to‑end data pipeline used throughout the project, starting with synthetic data generation in Python and ending with a fully deployed portfolio site. After creating and cleaning the datasets 
-in Jupyter Notebook, the data was loaded into SQL for modeling and then brought into Power BI for reporting. The foundation is the same, but this page adds an additional layer of complexity centered around evaluating loan officer performance.
-</p>
-
-<p>
-To move beyond simple production rankings, I developed a custom Performance Score using Python (pandas, numpy, and matplotlib) to test weighting scenarios and validate how different operational behaviors influence overall performance. 
-The score blends production metrics with fallout, extensions, and conversion efficiency to create a more balanced view of how effectively each loan officer manages their pipeline. Once the scoring logic was finalized, it was rebuilt in 
-Power BI using more than 25 custom DAX measures that calculate the operational components behind the score. The score was built to be inherently flexible, allowing weighting adjustments or new operational inputs to be incorporated without 
-restructuring the underlying model.
-</p>
-
-<p>
-The dashboard is designed to make these comparisons intuitive. Users can filter by loan officer or branch to see how performance shifts across different segments, and the quadrant chart visualizes how each officer balances production with efficiency. 
-By combining Python‑driven modeling with Power BI’s interactive reporting layer, the dashboard provides a clearer, more accurate way to compare loan officers than relying on funded volume alone.
-</p>
-
-</p>
-
-        </div>
-
+    <!-- PAGE TITLE -->
+    <div class="container" style="margin-top: 40px;">
+        <h1 style="text-align:center;">Loan Officer Performance Deep Dive</h1>
     </div>
 
+    <main>
+        <section>
+            <div class="container">
+
+                <!-- HERO IMAGE -->
+                <img src="Assets/Loan Officer Performance.png" alt="Loan Officer Performance Dashboard" class="hero-image">
+
+                <!-- PDF LINK -->
+                <p>
+                    <a href="Assets/Hinshaw Mortgage - PDF.pdf" target="_blank" rel="noopener">
+                        Download Full Dashboard PDF
+                    </a>
+                </p>
+
+                <!-- OVERVIEW -->
+                <div class="card overview-card">
+                    <div class="sectiontitle">Overview</div>
+
+                    <p>
+                        Hinshaw Mortgage Group (a fictional mortgage company) has 24 loan officers operating across five branches, 
+                        each with different market conditions, borrower types, and production expectations. Because of that, comparing 
+                        loan officer performance isn’t as simple as looking at who closes the most loans or who has the best close rate. 
+                        Every metric tells only part of the story, and relying on one of them creates a misleading picture of who’s actually 
+                        performing well.
+                    </p>
+
+                    <p>
+                        To solve this problem, I built the "Loan Officer Performance Score" metric. This metric works by evaluating both 
+                        componenets of the loan officers job - generating production while maintaining pipeline efficiency. The score rewards 
+                        the things that matter most—closing loans and driving volume—but it also accounts for the operational behaviors that directly 
+                        impact profitability, like fallout, suspense, and extensions. Extensions cost the company money and often signal borrower frustration 
+                        or weak pipeline management, so a true top performer shouldn’t just bring borrowers in the door—they should be able to convert them consistently.
+                    </p>
+
+                    <p>
+                        With the score in place, the dashboard makes it easy to compare loan officers by plotting their Performance Score against their fallout and extension 
+                        behavior. This naturally creates four quadrants that reflect real patterns in how loan officers work. Top Performers score high and keep fallout low—they 
+                        close a lot of loans and move borrowers through the process efficiently. Volatile officers also produce volume, but their higher fallout or extension usage 
+                        shows inconsistency in pipeline management. Underperformers maintain clean pipelines but struggle to generate meaningful production. And High‑Risk officers 
+                        fall short on both sides, with low production and high fallout or extension rates. Because the quadrant lines are based on the team’s median performance score 
+                        and median fallout rate, the chart adjusts to the actual distribution of the group, giving leaders a clear, honest view of where each loan officer stands.
+                    </p>
+
+                    <p>
+                        By combining production metrics with pipeline efficiency, the dashboard turns performance into something measurable and comparable. It helps leaders quickly 
+                        identify top performers, uncover hidden inefficiencies, and make informed decisions that strengthen both the borrower experience and overall profitability.
+                    </p>
+                </div>
+
+                <!-- KPIs -->
+                <div class="card">
+                    <div class="sectiontitle">Key KPIs</div>
+
+                    <ul class="kpi-grid">
+                        <li><strong>Highest Funded Volume:</strong> Sophia Shaw – $330M</li>
+                        <li><strong>Most Closed Loans:</strong> Sophia Shaw – 697 loans</li>
+                        <li><strong>Highest Close Rate:</strong> Isabella Garcia – 78.30%</li>
+                        <li><strong>Lowest Fallout Rate:</strong> Isabella Garcia – 16.80%</li>
+                        <li><strong>Lowest Suspense Rate:</strong> Harper Johnson – 3.73%</li>
+                        <li><strong>Lowest Extension Rate:</strong> Daniel Patel – 33%</li>
+                        <li><strong>Fastest Lock‑to‑Close Timeline:</strong> Ava Turner – 36 days</li>
+                        <li><strong>Highest Performance Score:</strong> Daniel Patel – 100</li>
+                    </ul>
+                </div>
+
+                <!-- KEY INSIGHTS -->
+                <div class="card">
+                    <div class="sectiontitle">Key Insights</div>
+
+                    <ul class="insights-list">
+                        <li>
+                            <strong>Daniel Patel holds the highest Performance Score at 100.00.</strong>
+                            His 385 closed loans, 76.23% close rate, and 33% extension rate make him the most balanced and efficient producer.
+                        </li>
+
+                        <li>
+                            <strong>Charlotte leads all branches in average Performance Score.</strong>
+                            Charlotte loan officers consistently score above the team median, reflecting strong conversion and disciplined pipeline management.
+                        </li>
+
+                        <li>
+                            <strong>Dallas posts the lowest branch Performance Score.</strong>
+                            Elevated fallout and extension rates across Dallas loan officers pull the branch to the bottom of the distribution.
+                        </li>
+
+                        <li>
+                            <strong>Sophia Shaw closes the most loans (477) but carries a 39.97% extension rate.</strong>
+                            She contributes 8.36% of total closed volume but also 8.30% of company‑wide extension cost, showing her efficiency does not scale with her production.
+                        </li>
+
+                        <li>
+                            <strong>Emily Turner has the highest extension percentage at 40.15%.</strong>
+                            This significantly increases operational cost and reduces her overall Performance Score despite strong production.
+                        </li>
+
+                        <li>
+                            <strong>Top Performers combine high volume with low fallout.</strong>
+                            Loan officers in this quadrant average close rates above 75% and fallout rates below 6%.
+                        </li>
+
+                        <li>
+                            <strong>Volatile performers show strong production but elevated fallout or extensions.</strong>
+                            Many exceed 350 closed loans but carry fallout rates above 21% or extension rates above 35%.
+                        </li>
+
+                        <li>
+                            <strong>Underperformers maintain clean pipelines but lack production scale.</strong>
+                            These loan officers typically close fewer than 260 loans annually despite low fallout.
+                        </li>
+
+                        <li>
+                            <strong>High‑Risk loan officers fall below the median on both production and efficiency.</strong>
+                            They combine low volume (<250 loans) with high fallout (>20%) or high extension usage (>35%).
+                        </li>
+
+                        <li>
+                            <strong>Sophia Hernandez has the lowest Performance Score at 72.34.</strong>
+                            Her 68.36% close rate, elevated suspense rate, and 24.64% fallout rate are the primary drivers of her low score.
+                        </li>
+
+                        <li>
+                            <strong>Branch leaders highlight market‑specific strengths.</strong>
+                            Top performers include Emily Turner (Atlanta), Harper Johnson (Charlotte), Mia Hernandez (Chicago), Isabella Garcia (Dallas), and Daniel Patel (Los Angeles).
+                        </li>
+
+                        <li>
+                            <strong>Extensions remain a major cost driver across the team.</strong>
+                            Loan officers with extension rates above 35% contribute disproportionately to the average $1,618 extension cost per loan.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- NARRATIVE ANALYSIS -->
+                <div class="card narrative-card">
+                    <div class="sectiontitle">Narrative Analysis</div>
+
+                    <p>
+                        The Performance Score highlights clear differences in how individual loan officers balance production with pipeline efficiency. 
+                        While several officers generate strong volume, only a subset convert that volume consistently. Daniel Patel represents the most 
+                        complete performance profile. His high close rate, low fallout, and disciplined extension usage indicate a pipeline that moves predictably 
+                        from application to funding. His results suggest strong borrower communication and effective coordination with operations, allowing him to maintain 
+                        both scale and efficiency.
+                    </p>
+
+                    <p>
+                        Isabella Garcia demonstrates a similar level of operational discipline. Her combination of the highest close rate and lowest fallout rate shows that 
+                        she manages borrower expectations effectively and resolves documentation issues early in the process. Her performance reflects a stable, low‑friction 
+                        pipeline where most borrowers who enter the funnel ultimately close.
+                    </p>
+
+                    <p>
+                        Other high‑volume loan officers show a different pattern. Sophia Shaw leads the team in closed loans, yet her elevated extension rate and disproportionate 
+                        share of extension cost indicate that her production requires more timeline adjustments and renegotiations. This suggests that while she excels at generating 
+                        demand, her pipeline experiences more volatility, which suppresses her overall Performance Score. Emily Turner shows a similar trend, with strong production offset 
+                        by high extension usage that introduces operational cost and borrower friction.
+                    </p>
+
+                    <p>
+                        The quadrant distribution reinforces these individual patterns. Top Performers combine high production with low fallout and controlled extension behavior, demonstrating 
+                        consistent borrower progression through the pipeline. Volatile performers generate meaningful volume but introduce operational risk through higher fallout or extension usage. 
+                        Underperformers maintain clean pipelines but lack production scale, while High‑Risk loan officers fall below the median on both dimensions, signaling the greatest opportunity 
+                        for coaching and process improvement.
+                    </p>
+
+                    <p>
+                        Loan officers with elevated fallout rates tend to experience borrower disengagement earlier in the process. This may reflect qualification uncertainty, rate sensitivity, or inconsistent 
+                        follow‑up. In contrast, officers with high extension usage typically keep borrowers engaged but require more time and operational resources to reach closing. These two behaviors impact the 
+                        Performance Score differently: fallout reduces conversion efficiency, while extensions increase cost and timeline variability.
+                    </p>
+
+                    <p>
+                        Extension behavior remains one of the strongest differentiators in Performance Score outcomes. Loan officers with extension rates above 35% contribute disproportionately to the company’s average 
+                        extension cost as well as overall extension cost. This pattern highlights the financial impact of pipeline inefficiency and underscores the importance of early documentation collection, accurate qualification, 
+                        and proactive borrower communication.
+                    </p>
+
+                    <p>
+                        Overall, the Performance Score provides a clearer view of loan officer effectiveness by combining production metrics with operational behavior. It highlights which officers generate sustainable, efficient volume 
+                        and which rely on heavier operational lift to close loans. This allows leaders to identify where strong performance is driven by disciplined pipeline management, where volume masks underlying friction, and where targeted 
+                        coaching can improve both borrower experience and profitability.
+                    </p>
+                </div>
+
+                <!-- TECHNICAL CONTEXT -->
+                <div class="card technical-card">
+                    <div class="sectiontitle">Technical Context</div>
+
+                    <p>
+                        This dashboard builds on the same end‑to‑end data pipeline used throughout the project, starting with synthetic data generation in Python and ending with a fully deployed portfolio site. After creating and cleaning the datasets 
+                        in Jupyter Notebook, the data was loaded into SQL for modeling and then brought into Power BI for reporting. The foundation is the same, but this page adds an additional layer of complexity centered around evaluating loan officer performance.
+                    </p>
+
+                    <p>
+                        To move beyond simple production rankings, I developed a custom Performance Score using Python (pandas, numpy, and matplotlib) to test weighting scenarios and validate how different operational behaviors influence overall performance. 
+                        The score blends production metrics with fallout, extensions, and conversion efficiency to create a more balanced view of how effectively each loan officer manages their pipeline. Once the scoring logic was finalized, it was rebuilt in 
+                        Power BI using more than 25 custom DAX measures that calculate the operational components behind the score. The score was built to be inherently flexible, allowing weighting adjustments or new operational inputs to be incorporated without 
+                        restructuring the underlying model.
+                    </p>
+
+                    <p>
+                        The dashboard is designed to make these comparisons intuitive. Users can filter by loan officer or branch to see how performance shifts across different segments, and the quadrant chart visualizes how each officer balances production with efficiency. 
+                        By combining Python‑driven modeling with Power BI’s interactive reporting layer, the dashboard provides a clearer, more accurate way to compare loan officers than relying on funded volume alone.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 Jason Hinshaw
+    </footer>
+
+</div>
 </body>
 </html>
