@@ -175,9 +175,9 @@
 }
 </style>
 
-<!-- DASHBOARD SCREENSHOT BLOCK -->
+<!-- PIPELINE INSIGHTS -->
 <div class="dashboard-frame">
-    <a href="Dashboards.html">
+    <a href="Pipeline_insights.html">
         <img src="Assets/Pipeline Insights.png" 
              alt="Pipeline Insights Dashboard" 
              class="hero-image">
@@ -185,44 +185,35 @@
 </div>
 
 <style>
-    /* 16:9 FRAME FOR DASHBOARD IMAGES */
     .dashboard-frame {
-        aspect-ratio: 16 / 9;
         width: 100%;
         max-width: 1400px;
-        overflow: hidden;
+        margin: 20px auto;
         border-radius: 10px;
-        margin: 30px auto 10px auto;
-        display: block;
-        border: 1px solid #1f2937; /* matches your site’s border color */
-        background: #0f172a; /* matches your card background */
+        border: 1px solid #1f2937;
+        background: #0f172a;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
     }
 
-    /* UPDATED IMAGE STYLING */
     .hero-image {
         width: 100%;
-        height: 100%;
-        object-fit: cover; /* fills the 16:9 frame cleanly */
-        image-rendering: auto; /* prevents pixelation */
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
+        image-rendering: auto;
         display: block;
         transition: transform 0.25s ease;
     }
 
-    /* HOVER EFFECT */
     .dashboard-frame:hover .hero-image {
         transform: scale(1.02);
     }
-
-    /* CAPTION TEXT */
-    .dashboard-caption {
-        text-align: center;
-        font-size: 0.9rem;
-        color: #9ca3af; /* muted gray from your theme */
-        margin-bottom: 25px;
-        letter-spacing: 0.5px;
-    }
 </style>
+
 
 
 <!-- PDF Download -->
