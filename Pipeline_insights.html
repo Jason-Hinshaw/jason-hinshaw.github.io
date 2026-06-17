@@ -175,8 +175,59 @@
 }
 </style>
 
-<!-- Screenshot -->
-<img src="Assets/Pipeline Insights.png" alt="Pipeline Insights Dashboard" class="hero-image">
+<!-- DASHBOARD SCREENSHOT BLOCK -->
+<div class="dashboard-frame">
+    <a href="Dashboards.html">
+        <img src="Assets/Pipeline Insights.png" 
+             alt="Pipeline Insights Dashboard" 
+             class="hero-image">
+    </a>
+</div>
+
+<div class="dashboard-caption">
+    Click to explore this dashboard
+</div>
+
+<style>
+    /* 16:9 FRAME FOR DASHBOARD IMAGES */
+    .dashboard-frame {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        max-width: 1400px;
+        overflow: hidden;
+        border-radius: 10px;
+        margin: 30px auto 10px auto;
+        display: block;
+        border: 1px solid #1f2937; /* matches your site’s border color */
+        background: #0f172a; /* matches your card background */
+        cursor: pointer;
+    }
+
+    /* UPDATED IMAGE STYLING */
+    .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* fills the 16:9 frame cleanly */
+        image-rendering: auto; /* prevents pixelation */
+        display: block;
+        transition: transform 0.25s ease;
+    }
+
+    /* HOVER EFFECT */
+    .dashboard-frame:hover .hero-image {
+        transform: scale(1.02);
+    }
+
+    /* CAPTION TEXT */
+    .dashboard-caption {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #9ca3af; /* muted gray from your theme */
+        margin-bottom: 25px;
+        letter-spacing: 0.5px;
+    }
+</style>
+
 
 <!-- PDF Download -->
 <p>
