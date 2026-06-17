@@ -223,25 +223,27 @@
 </div>
 
 <style>
-    /* 16:9 FRAME FOR DASHBOARD IMAGES */
+    /* FRAME THAT DOES NOT CROP OR STRETCH */
     .dashboard-frame {
-        aspect-ratio: 16 / 9;
         width: 100%;
         max-width: 1400px;
-        overflow: hidden;
-        border-radius: 10px;
         margin: 20px auto 10px auto;
-        display: block;
+        border-radius: 10px;
         border: 1px solid #1f2937;
         background: #0f172a;
+        padding: 20px; /* gives breathing room */
+        display: flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
     }
 
-    /* IMAGE STYLING */
+    /* IMAGE THAT PRESERVES CLARITY */
     .hero-image {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
+        max-height: 100%;
+        object-fit: contain; /* <-- preserves clarity, no cropping */
         image-rendering: auto;
         display: block;
         transition: transform 0.25s ease;
@@ -268,6 +270,7 @@
         color: #cbd5e1;
     }
 </style>
+
 
 
 </div>
