@@ -172,8 +172,10 @@
     <h1 class="pagetitle">Dashboards</h1>
 
     <!-- Pipeline Insights -->
-    <div class="card">
-        <h3><a href="Pipeline_insights.html">Pipeline Insights Dashboard</a></h3>
+<div class="card">
+    <h3><a href="Pipeline_insights.html">Pipeline Insights Dashboard</a></h3>
+
+    <div class="dashboard-frame">
         <a href="Pipeline_insights.html">
             <img src="Assets/Pipeline Insights.png" 
                  alt="Pipeline Insights Dashboard" 
@@ -181,9 +183,16 @@
         </a>
     </div>
 
-    <!-- Loan Officer Performance -->
-    <div class="card">
-        <h3><a href="Loan_Officer_Performance.html">Loan Officer Performance Deep Dive</a></h3>
+    <a href="Pipeline_insights.html" class="dashboard-caption">
+        Click to explore this dashboard
+    </a>
+</div>
+
+<!-- Loan Officer Performance -->
+<div class="card">
+    <h3><a href="Loan_Officer_Performance.html">Loan Officer Performance Deep Dive</a></h3>
+
+    <div class="dashboard-frame">
         <a href="Loan_Officer_Performance.html">
             <img src="Assets/Loan Officer Performance.png" 
                  alt="Loan Officer Performance Dashboard" 
@@ -191,15 +200,75 @@
         </a>
     </div>
 
-    <!-- Extension Deep Dive -->
-    <div class="card">
-        <h3><a href="Extension_Insights.html">Extension Deep Dive Dashboard</a></h3>
+    <a href="Loan_Officer_Performance.html" class="dashboard-caption">
+        Click to explore this dashboard
+    </a>
+</div>
+
+<!-- Extension Deep Dive -->
+<div class="card">
+    <h3><a href="Extension_Insights.html">Extension Deep Dive Dashboard</a></h3>
+
+    <div class="dashboard-frame">
         <a href="Extension_Insights.html">
             <img src="Assets/Extension Insights.png" 
                  alt="Extension Deep Dive Dashboard" 
                  class="hero-image">
         </a>
     </div>
+
+    <a href="Extension_Insights.html" class="dashboard-caption">
+        Click to explore this dashboard
+    </a>
+</div>
+
+<style>
+    /* 16:9 FRAME FOR DASHBOARD IMAGES */
+    .dashboard-frame {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        max-width: 1400px;
+        overflow: hidden;
+        border-radius: 10px;
+        margin: 20px auto 10px auto;
+        display: block;
+        border: 1px solid #1f2937;
+        background: #0f172a;
+        cursor: pointer;
+    }
+
+    /* IMAGE STYLING */
+    .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        image-rendering: auto;
+        display: block;
+        transition: transform 0.25s ease;
+    }
+
+    /* HOVER EFFECT */
+    .dashboard-frame:hover .hero-image {
+        transform: scale(1.02);
+    }
+
+    /* CAPTION TEXT */
+    .dashboard-caption {
+        display: block;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #9ca3af;
+        margin-bottom: 25px;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .dashboard-caption:hover {
+        color: #cbd5e1;
+    }
+</style>
+
 
 </div>
 
