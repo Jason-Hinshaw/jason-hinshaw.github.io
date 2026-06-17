@@ -275,22 +275,25 @@
 </div>
 
 
+<!-- ========================= -->
+<!-- 2. ETL & DATA CLEANING   -->
+<!-- ========================= -->
 
-                <div class="technical-card">
+<div class="technical-card">
     <div class="sectiontitle">2. ETL & Data Cleaning (Jupyter Notebook)</div>
 
     <p>
-        After generating the synthetic datasets, I used Jupyter Notebook to perform all ETL and data‑cleaning steps before loading the data into PostgreSQL. 
-        The workflow followed a traditional Extract → Transform → Load pattern using <strong>Pandas</strong> for data manipulation, <strong>NumPy</strong> for numeric operations, 
-        and <strong>SQLAlchemy</strong> with <strong>psycopg2</strong> to load the cleaned data into a relational database.
+        After generating the synthetic datasets, I used Jupyter Notebook to perform all ETL and data‑cleaning steps before loading anything into a database. 
+        This stage focused entirely on preparing the raw CSV outputs for analytical use by applying a structured Extract → Transform → Load workflow using 
+        <strong>Pandas</strong> for data manipulation and <strong>NumPy</strong> for numeric operations.
     </p>
 
     <p><strong>Extract</strong> — I began by loading the raw CSV files (<em>employees.csv</em>, <em>loans.csv</em>, <em>loan_extensions.csv</em>) into Pandas dataframes. 
         Using <code>.head()</code>, <code>.info()</code>, and <code>.columns</code>, I validated row counts, inspected data types, identified missing values, and confirmed the structure of each dataset. 
-        This step ensured that the generated data aligned with the expected schema before any transformations were applied.
+        This ensured the generated data aligned with the expected schema before any transformations were applied.
     </p>
 
-    <p><strong>Transform</strong> — Each dataset required extensive cleaning and standardization to prepare it for SQL modeling and Power BI. Key transformations included:</p>
+    <p><strong>Transform</strong> — Each dataset required extensive cleaning and standardization to prepare it for relational modeling and Power BI. Key transformations included:</p>
 
     <ul>
         <li><strong>Column normalization:</strong> Standardized column names by stripping whitespace, converting to lowercase, replacing spaces with underscores, and then renaming to business‑friendly labels.</li>
@@ -299,7 +302,7 @@
         <li><strong>Text cleaning:</strong> Standardized categorical fields such as extension reasons and requestor roles by stripping whitespace, normalizing spacing, and applying consistent capitalization.</li>
         <li><strong>Feature engineering:</strong> Added new fields including employee tenure, compensation flags, branch labels, total extension days, total extension cost, and extension buckets.</li>
         <li><strong>Duplicate checks:</strong> Verified dataset integrity using <code>.duplicated()</code> across full rows and key combinations (e.g., loan number + extension sequence).</li>
-        <li><strong>Missing value handling:</strong> Identified and resolved null values where appropriate, ensuring all required fields were populated for SQL ingestion.</li>
+        <li><strong>Missing value handling:</strong> Identified and resolved null values where appropriate, ensuring all required fields were populated for downstream modeling.</li>
     </ul>
 
     <p>
@@ -307,48 +310,351 @@
         loan dates were properly typed for timeline calculations, and extension records included aggregated metrics such as total extension days and total extension cost per loan.
     </p>
 
-    <div class="sectiontitle" style="margin-top: 1.5rem;">3. Loading Cleaned Data into PostgreSQL</div>
-
     <p>
-        Once the datasets were cleaned, I used <strong>SQLAlchemy</strong> and <strong>psycopg2</strong> to load them into a PostgreSQL database named <em>Hinshaw_Mortgage</em>. 
-        I created three tables—<em>employees_clean</em>, <em>loans_clean</em>, and <em>extensions_clean</em>—using explicit <code>CREATE TABLE</code> statements to define data types, primary keys, and foreign key relationships.
-    </p>
-
-    <p>
-        After defining the schema, I used <code>to_sql()</code> to append the cleaned Pandas dataframes into their respective tables. 
-        To validate the load, I ran SQL queries directly from the notebook (e.g., <code>SELECT COUNT(*) FROM employees</code>) to confirm that row counts matched the cleaned datasets.
-    </p>
-
-    <p>
-        This step completed the ETL pipeline and prepared the data for SQL modeling and Power BI. By loading the data into PostgreSQL, I was able to write relational queries, enforce schema consistency, 
-        and build a more realistic analytics environment that mirrors the workflows used in enterprise BI systems.
+        Once the datasets were fully cleaned and standardized, I exported them to CSV. These cleaned files served as the source inputs for the SQL modeling phase.
     </p>
 </div>
 
 
-                <!-- SQL MODELING -->
-                <div class="technical-card">
-                    <div class="sectiontitle">3. SQL Data Modeling (PostgreSQL)</div>
-                    <p>[Placeholder – describe table structure, relationships, main query]</p>
-                </div>
+<!-- ========================= -->
+<!-- 3. SQL MODELING          -->
+<!-- ========================= -->
 
-                <!-- POWER BI CONNECTION -->
-                <div class="technical-card">
-                    <div class="sectiontitle">4. Power BI Data Connection & Modeling</div>
-                    <p>[Placeholder – describe import, relationships, model design]</p>
-                </div>
+<div class="technical-card">
+    <div class="sectiontitle">3. SQL Modeling (PostgreSQL Star Schema)</div>
 
-                <!-- DAX MEASURES -->
-                <div class="technical-card">
-                    <div class="sectiontitle">5. DAX Measures & KPI Logic</div>
-                    <p>[Placeholder – describe your 50+ measures, scoring logic, validation]</p>
-                </div>
+    <p>
+        With the cleaned datasets prepared, I designed a dimensional data model in PostgreSQL to support analytical querying and Power BI reporting. 
+        The model follows a <strong>star schema</strong>—the standard structure used in enterprise BI systems—providing clean relationships, predictable grain, and efficient performance for analytical workloads.
+    </p>
 
-                <!-- DASHBOARD BUILDING -->
+    <p>
+        The schema centers around a primary fact table (<em>loans_clean</em>) supported by a dimension table (<em>employees_clean</em>) and a secondary fact table (<em>extensions_clean</em>). 
+        I created each table using explicit <code>CREATE TABLE</code> statements, defining data types, primary keys, and foreign key constraints to enforce relational integrity.
+    </p>
+
+    <p><strong>Fact Table: loans_clean</strong> — This table represents the core grain of the model: one row per mortgage loan. 
+        It includes application timelines, borrower credit metrics, product details, compensation calculations, and employee assignments. 
+        The primary key is <code>loan_number</code>, and the table contains foreign keys linking to employee roles such as loan officer, processor, underwriter, and account executive.
+    </p>
+
+    <p><strong>Dimension Table: employees_clean</strong> — This table stores employee attributes including name, role, region, branch, compensation structure, and tenure. 
+        The primary key is <code>employee_id</code>. 
+        This dimension supports multiple relationships back to the loans fact table, enabling analysis by loan officer, processor, underwriter, or account executive.
+    </p>
+
+    <p><strong>Secondary Fact Table: extensions_clean</strong> — This table captures lock extension activity at the loan level. 
+        Each row represents a single extension event, including extension days, fees, reason codes, and before/after expiration dates. 
+        The primary key is <code>extension_id</code>, and the table includes a foreign key linking back to <code>loan_number</code> in the loans fact table. 
+        This creates a one‑to‑many relationship that mirrors real mortgage lock‑management workflows.
+    </p>
+
+    <p>
+        To implement the schema, I used <strong>SQLAlchemy</strong> and <strong>psycopg2</strong> to connect to PostgreSQL and execute the table‑creation statements. 
+        Each table was defined with appropriate data types (e.g., <code>DATE</code>, <code>NUMERIC</code>, <code>INT</code>, <code>TEXT</code>) to ensure consistency and enforce schema integrity. 
+        After creating the tables, I used Pandas’ <code>to_sql()</code> method to load the cleaned dataframes into the database.
+    </p>
+
+    <p>
+        Once the data was loaded, I validated the model by running SQL queries directly from the notebook—such as <code>SELECT COUNT(*)</code>—to confirm row counts and verify that foreign key relationships were preserved. 
+        This relational structure provides a stable foundation for Power BI, enabling efficient joins, accurate aggregations, and a clean semantic layer for DAX measures.
+    </p>
+
+    <p>
+        The result is a fully functional star schema that mirrors the data modeling practices used in real mortgage analytics environments, supporting both operational reporting and deeper performance analysis.
+    </p>
+</div>
+
+
+              <div class="technical-card">
+    <div class="sectiontitle">4. Connecting Power BI to PostgreSQL</div>
+
+    <p>
+        With the star schema fully implemented in PostgreSQL, the next step was to connect the data model to Power BI. 
+        I chose Power BI for this project because I have more than three years of experience building operational dashboards at Rocket Mortgage, 
+        where I used it daily to support leadership reporting, performance tracking, and real‑time operational insights. 
+        Re‑creating that workflow in this portfolio project allowed me to demonstrate the same end‑to‑end analytics process I use in production without sharing sensitive company data.
+    </p>
+
+    <p>
+        Power BI connects natively to PostgreSQL, so I used the built‑in PostgreSQL connector to establish a direct connection to the 
+        <em>Hinshaw_Mortgage</em> database. After entering the server, database name, and authentication details, Power BI detected the three modeled tables— 
+        <em>employees_clean</em>, <em>loans_clean</em>, and <em>extensions_clean</em>—exactly as they were defined in SQL.
+    </p>
+
+    <p>
+        Once connected, I selected the tables and loaded them into Power BI. Because the schema was already structured as a star model, 
+        Power BI automatically recognized the primary and foreign key relationships between the tables. 
+        This created a clean semantic layer where the <em>loans_clean</em> fact table sits at the center, with <em>employees_clean</em> and <em>extensions_clean</em> 
+        acting as supporting dimension and secondary fact tables.
+    </p>
+
+    <p>
+        This relational structure allowed me to begin building DAX measures immediately—without needing to reshape or re‑model the data inside Power BI. 
+        The result is a reporting environment that mirrors the same architecture I used at Rocket Mortgage: a SQL‑backed star schema feeding a set of 
+        interactive, operational dashboards built in Power BI.
+    </p>
+
+    <p>
+        The connection step completed the data pipeline, enabling the dashboards to refresh directly from PostgreSQL and ensuring that all measures, 
+        filters, and drill‑downs operate on a clean, well‑modeled dataset.
+    </p>
+</div>
+
+
+<div class="technical-card">
+    <div class="sectiontitle">5. DAX Measures & Python Analytics</div>
+
+    <p>
+        With the PostgreSQL star schema connected to Power BI, the next step was to build the analytical layer that powers the dashboards. 
+        I have more than three years of experience using Power BI at Rocket Mortgage, where I built operational dashboards for leadership, 
+        performance management, and pipeline monitoring. This project mirrors that same workflow: using DAX to engineer business logic, 
+        create performance metrics, and shape the semantic layer that drives the visuals.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">Performance Score (DAX + Python)</div>
+
+    <p>
+        The core metric in this project is the <strong>Loan Officer Performance Score</strong>, a composite measure designed to evaluate loan officers on both 
+        production and operational discipline. Rather than ranking loan officers solely by funded volume, closed loans or another solitary metric, the score blends four key components:
+    </p>
+
+    <ul>
+        <li><strong>Funded Rate</strong> — measures conversion efficiency and pipeline quality</li>
+        <li><strong>Fallout Rate</strong> — penalizes volatility and poor borrower pull‑through</li>
+        <li><strong>Closed Loan Volume</strong> — rewards sustainable production</li>
+        <li><strong>Operational Efficiency</strong> — incorporates cycle‑time and extension behavior</li>
+    </ul>
+
+    <p>
+        These components are combined in DAX using a weighted formula that rewards consistent, high‑quality production while penalizing excessive fallout or 
+        operational friction. The result is a single, interpretable score that reflects both <em>how much</em> a loan officer produces and <em>how efficiently</em> they manage their pipeline.
+    </p>
+
+    <p>
+        Once the score is calculated in DAX, I use Python inside Power BI to generate a quadrant visualization. The script dynamically computes the median 
+        fallout rate and median performance score, then classifies each loan officer into one of four categories:
+    </p>
+
+    <ul>
+        <li><strong>Top Performer</strong> — high score, low fallout</li>
+        <li><strong>Volatile</strong> — high score, high fallout</li>
+        <li><strong>High Risk</strong> — low score, high fallout</li>
+        <li><strong>Underperformer</strong> — low score, low fallout</li>
+    </ul>
+
+    <p>
+        Bubble size is scaled by closed‑loan volume, allowing high‑impact producers to stand out visually. This hybrid DAX + Python approach mirrors the 
+        advanced analytics workflows I used at Rocket Mortgage, where composite scoring models and quadrant analysis were used to identify coaching 
+        opportunities, operational bottlenecks, and top‑performing loan officers.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">Extension Performance Score (DAX)</div>
+
+    <p>
+        I also developed a second composite metric: the <strong>Extension Performance Score</strong>. This measure evaluates how efficiently each loan officer 
+        manages lock extensions by combining four components:
+    </p>
+
+    <ul>
+        <li><strong>Loan Officer Extension %</strong> — the share of funded loans requiring extensions</li>
+        <li><strong>Total Extensions (Company + Borrower)</strong> — operational burden created by each loan officer</li>
+        <li><strong>Avg Cost Per Extension Day</strong> — financial impact of delays</li>
+        <li><strong>Closed Loans</strong> — production volume, included as a positive scaling factor</li>
+    </ul>
+
+    <p>
+        The raw score is normalized by dividing it by the maximum score across all loan officers, ensuring the final result is a clean 0–100 scale. 
+        This makes the metric intuitive and comparable across branches, channels, and time periods.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">Company‑Caused vs Borrower‑Caused Extensions</div>
+
+    <p>
+        A key enhancement in this project was separating extensions into <strong>company‑caused</strong> and <strong>borrower‑caused</strong> categories. 
+        Using DAX filters on the extension reason codes, I created measures that isolate operational delays (e.g., underwriting conditions, appraisal delays) 
+        from borrower‑driven delays (e.g., missing documents, rate shopping). This additional layer of segmentation provides deeper insight into 
+        operational efficiency and coaching opportunities.
+    </p>
+
+    <p>
+        These filtered measures feed into KPIs, trend lines, and branch‑level comparisons, allowing leaders to quickly identify whether extension behavior 
+        is driven by internal process issues or borrower behavior.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">Percentage Measures & Operational KPIs</div>
+
+    <p>
+        I built a full suite of percentage‑based DAX measures to support the dashboards, including:
+    </p>
+
+    <ul>
+        <li><strong>Extension Percentage</strong> — extensions ÷ funded loans</li>
+        <li><strong>Close Percentage</strong> — funded loans ÷ total applications</li>
+        <li><strong>Fallout Rate</strong> — fallout loans ÷ total applications</li>
+        <li><strong>Borrower vs Company Extension %</strong> — segmented extension behavior</li>
+        <li><strong>Month‑over‑Month Extension Change</strong> — operational trend tracking</li>
+        <li><strong>Pct of Total Extension Cost</strong> — cost attribution across branches and loan officers</li>
+    </ul>
+
+    <p>
+        These measures form the backbone of the dashboards, enabling dynamic filtering by loan officer, branch, region, channel, product type, and month.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">Cycle‑Time & Risk Segmentation Measures</div>
+
+    <p>
+        To deepen the operational analysis, I added several supporting measures that mirror real mortgage KPIs:
+    </p>
+
+    <ul>
+        <li><strong>Days to Lock</strong> — measures borrower engagement speed</li>
+        <li><strong>Days Lock to Funding</strong> — measures operational cycle time</li>
+        <li><strong>CLTV / FICO / DTI Groupings</strong> — risk segmentation for funded loans</li>
+        <li><strong>Loans With 3+ Extensions</strong> — high‑risk operational flag</li>
+    </ul>
+
+    <p>
+        These measures help identify bottlenecks, risk patterns, and coaching opportunities across branches and loan officers.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">Leaderboard & Benchmarking Measures</div>
+
+    <p>
+        To support performance comparisons, I built a set of leaderboard and benchmarking measures, including:
+    </p>
+
+    <ul>
+        <li><strong>Top Producer Name</strong> and <strong>Top Producer Closed Loans</strong></li>
+        <li><strong>Highest / Lowest Extension %</strong> by branch and loan officer</li>
+        <li><strong>Highest / Lowest Fallout %</strong> across the company</li>
+        <li><strong>Highest Funded Volume</strong> and <strong>Highest Volume Loan Officer</strong></li>
+    </ul>
+
+    <p>
+        These measures power the “Top Performer” and “Lowest Performer” cards throughout the dashboards, giving leadership a quick read on 
+        who is excelling and who may need support.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">Conditional Formatting & Visual Enhancements</div>
+
+    <p>
+        To make the dashboards more intuitive, I applied conditional formatting to key measures such as extension percentage, fallout rate, and performance scores. 
+        High‑risk values are highlighted in red, strong performance in green, and neutral values in gold or blue. 
+        This visual language mirrors the operational dashboards I built at Rocket Mortgage, where color‑coded KPIs help leaders identify issues at a glance.
+    </p>
+
+    <p>
+        Combined with the Python quadrant visual, these enhancements create a reporting experience that is both analytical and highly actionable.
+    </p>
+
+    <p>
+        Together, the DAX measures, composite scoring models, and Python‑powered visuals form the analytical engine of the dashboards, enabling 
+        deep performance insights across loan officers, branches, and operational processes.
+    </p>
+</div>
+
+
                 <div class="technical-card">
-                    <div class="sectiontitle">6. Dashboard Construction</div>
-                    <p>[Placeholder – describe visuals, filters, conditional formatting]</p>
-                </div>
+    <div class="sectiontitle">7. User Workflow & How the Dashboards Are Used</div>
+
+    <p>
+        Each dashboard in this project was designed with a clear user workflow in mind. Rather than creating static visuals, the goal was to build 
+        an interactive reporting experience that mirrors how real mortgage operations teams explore data, diagnose issues, and make decisions. 
+        The dashboards guide users from high‑level trends down to granular, loan‑officer‑level insights through intuitive filtering, consistent 
+        navigation, and a clean visual hierarchy.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">1. Start with the Pipeline Insights Dashboard</div>
+
+    <p>
+        Most users begin on the <strong>Pipeline Insights</strong> page to understand the overall health of the business. This dashboard answers 
+        foundational questions such as:
+    </p>
+
+    <ul>
+        <li><strong>How is our close rate trending?</strong></li>
+        <li><strong>Which branches are driving funded volume?</strong></li>
+        <li><strong>Where is fallout increasing?</strong></li>
+        <li><strong>How do borrower credit metrics compare across branches?</strong></li>
+    </ul>
+
+    <p>
+        Users can filter by branch, channel, product type, or month to isolate performance patterns. This page acts as the “executive summary” 
+        before diving deeper into loan officer or extension behavior.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">2. Drill into Loan Officer Performance</div>
+
+    <p>
+        After reviewing pipeline trends, users typically move to the <strong>Loan Officer Performance Deep‑Dive</strong>. This dashboard is designed 
+        for branch leaders, sales managers, and performance coaches who need to understand:
+    </p>
+
+    <ul>
+        <li><strong>Which loan officers are top performers?</strong></li>
+        <li><strong>Who has high fallout or volatility?</strong></li>
+        <li><strong>How do cycle‑time metrics compare across the team?</strong></li>
+        <li><strong>Which loan officers need coaching or support?</strong></li>
+    </ul>
+
+    <p>
+        The Python quadrant visualization provides an immediate snapshot of performance quality and consistency. Users can click on any loan officer 
+        to filter the entire page, updating KPIs, trend lines, and the performance matrix in real time.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">3. Analyze Extension Behavior & Cost Drivers</div>
+
+    <p>
+        The <strong>Extension Deep‑Dive</strong> dashboard is used when leaders want to understand operational friction and cost. This page answers 
+        questions such as:
+    </p>
+
+    <ul>
+        <li><strong>Are extensions increasing or decreasing over time?</strong></li>
+        <li><strong>Which branches or loan officers drive the most extension cost?</strong></li>
+        <li><strong>Are delays caused by the company or the borrower?</strong></li>
+        <li><strong>Which extension reasons are most common?</strong></li>
+        <li><strong>Where do we see high‑risk patterns like 3+ extensions?</strong></li>
+    </ul>
+
+    <p>
+        Users can drill into specific branches or loan officers to see extension performance scores, cost per loan, and detailed reason breakdowns. 
+        This workflow mirrors real lock‑desk and operations reviews, where identifying the root cause of delays is critical.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">4. Compare Branches & Loan Officers Across Dashboards</div>
+
+    <p>
+        Because all dashboards share the same star‑schema model and DAX measures, users can seamlessly compare performance across pages. 
+        Selecting a branch or loan officer on one dashboard automatically filters the others, enabling:
+    </p>
+
+    <ul>
+        <li><strong>Branch‑to‑branch comparisons</strong></li>
+        <li><strong>Loan officer benchmarking</strong></li>
+        <li><strong>Channel‑specific performance analysis</strong></li>
+        <li><strong>Product‑level segmentation</strong></li>
+    </ul>
+
+    <p>
+        This interconnected workflow allows leadership to move from high‑level trends to root‑cause analysis in just a few clicks.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1rem;">5. A User Experience Designed for Real Operations</div>
+
+    <p>
+        The dashboards were intentionally designed to feel familiar to anyone who has worked in mortgage operations. Clean KPI cards, 
+        intuitive color coding, matrix tables, and dual‑axis visuals make it easy to interpret complex metrics quickly. 
+        The custom Hinshaw Mortgage logo adds a polished, branded feel that ties the experience together.
+    </p>
+
+    <p>
+        The result is a reporting suite that not only showcases technical skill in Power BI, DAX, SQL, and Python, but also reflects 
+        real mortgage domain expertise and an understanding of how operational teams use data to drive decisions.
+    </p>
+</div>
+
 
                 <!-- WEBSITE DEPLOYMENT -->
                 <div class="technical-card">
