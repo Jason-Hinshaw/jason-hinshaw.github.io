@@ -174,9 +174,39 @@
 
                 <!-- INTRO -->
                 <div class="technical-card">
-                    <div class="sectiontitle">Project Overview</div>
-                    <p>[Placeholder text – describe the full end‑to‑end pipeline at a high level]</p>
-                </div>
+    <div class="technical-card">
+    <div class="sectiontitle">Project Overview</div>
+
+    <p>
+        The goal of this project was to recreate the full analytics environment I worked with at Rocket Mortgage—without using any real customer or operational data. 
+        Mortgage data is highly sensitive, tightly regulated, and cannot be shared outside the company, which meant I needed a way to demonstrate my technical skills, 
+        domain knowledge, and end‑to‑end workflow without exposing proprietary information. The solution was to engineer a fully synthetic mortgage pipeline that mirrors 
+        the structure, behavior, and complexity of a real lending operation.
+    </p>
+
+    <p>
+        To accomplish this, I designed a fictional mortgage company—Hinshaw Mortgage—and generated three core datasets in Python: a loan pipeline, an extension dataset, and 
+        an employee roster. These datasets were intentionally modeled after the types of data sources I worked with in production: multi‑table relationships, operational metrics, 
+        timeline‑driven events, and performance indicators that require transformation before they become meaningful.
+    </p>
+
+    <p>
+        Once the synthetic data was created, I built a complete analytics pipeline around it—cleaning and transforming the data in Jupyter Notebook, loading it into PostgreSQL, 
+        modeling relationships between tables, and connecting the final structure to Power BI. From there, I developed more than fifty custom DAX measures to replicate the KPI logic, 
+        scoring systems, and operational insights used in real mortgage analytics. The result is a set of dashboards that behave like the tools used inside a mortgage company, but built 
+        entirely on safe, synthetic data.
+    </p>
+
+    <p>
+        This Technical Overview page documents the full engineering process behind the dashboards: how the data was generated, how the ETL workflow was structured, how the SQL model was designed, 
+        how the Power BI measures were built, and how the final project was deployed as a public portfolio site. It serves as the technical backbone of the Hinshaw Mortgage project and demonstrates 
+        the complete analytics workflow—from raw data creation to polished, interactive reporting.
+    </p>
+</div>
+
+
+</div>
+
 
                 <!-- SYNTHETIC DATA GENERATION -->
                 <div class="technical-card">
