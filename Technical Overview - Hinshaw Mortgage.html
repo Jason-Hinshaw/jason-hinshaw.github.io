@@ -208,17 +208,123 @@
 </div>
 
 
-                <!-- SYNTHETIC DATA GENERATION -->
-                <div class="technical-card">
-                    <div class="sectiontitle">1. Synthetic Data Generation (Python)</div>
-                    <p>[Placeholder – describe how you generated loans, extensions, employees datasets]</p>
-                </div>
+<div class="technical-card">
+    <div class="sectiontitle">1. Synthetic Data Generation (Python)</div>
 
-                <!-- ETL & CLEANING -->
+    <p>
+        Using Jupyter Notebook as the development environment, I built a Python script that generates the synthetic mortgage datasets step‑by‑step, mirroring the structure and behavior of real production data. 
+        The script uses a combination of <strong>Pandas</strong> for dataframe construction, <strong>NumPy</strong> for statistical distributions, <strong>random</strong> for controlled randomness, and Python’s 
+        <strong>datetime</strong> library to simulate realistic timelines such as application dates, lock periods, and funding lags.
+    </p>
+
+    <p>
+        The data generation script produces three core datasets: <em>Employees</em>, <em>Loans</em>, and <em>Loan Extensions</em>. Each dataset is created using domain rules, weighted randomness, and capped normal 
+        distributions that reflect real mortgage operations. The script is structured in three major sections:
+    </p>
+
+    <p><strong>1. Employee Dataset</strong> — The script begins by defining a role configuration that determines how many employees exist in each position (loan officers, processors, underwriters, account executives, 
+        and leadership roles). Using loops and weighted selections, each employee is assigned:</p>
+
+    <ul>
+        <li>A randomly selected first and last name</li>
+        <li>A branch and region pulled from a predefined branch list</li>
+        <li>A hire date generated within a realistic 10-year window</li>
+        <li>A compensation structure based on role (salary vs. bps)</li>
+        <li>A unique employee ID</li>
+    </ul>
+
+    <p>
+        A helper function retrieves employee IDs by role, allowing the loan generation process to assign each loan to a realistic team structure. This mirrors how real mortgage companies organize production teams.
+    </p>
+
+    <p><strong>2. Loan Pipeline Dataset</strong> — The script then generates 10,000 synthetic loans. Each loan is built using logic that reflects real mortgage behavior:</p>
+
+    <ul>
+        <li><strong>Application and lock dates</strong> are generated using date offsets from a base date to simulate a rolling pipeline.</li>
+        <li><strong>Loan amounts</strong> are drawn from NumPy normal distributions that vary by state, producing realistic price differences between markets like CA, TX, and NC.</li>
+        <li><strong>Product type</strong> is determined by loan amount (e.g., jumbo if above the conforming limit) or by weighted random selection.</li>
+        <li><strong>Credit metrics</strong> (FICO, DTI, CLTV) use capped normal distributions to mimic real borrower profiles while enforcing realistic minimums and maximums.</li>
+        <li><strong>Loan status</strong> (Funded, Withdrawn, Denied, etc.) is assigned using weighted probabilities to reflect real pull‑through behavior.</li>
+        <li><strong>Employee assignments</strong> link each loan to a loan officer, processor, underwriter, and (if wholesale) an account executive.</li>
+        <li><strong>Compensation</strong> is calculated using the loan amount and a randomized bps value tied to the loan officer’s comp plan.</li>
+    </ul>
+
+    <p>
+        This produces a loan pipeline that looks and behaves like the datasets used inside a real mortgage company—complete with production variation, channel differences, and realistic borrower characteristics.
+    </p>
+
+    <p><strong>3. Extension Dataset</strong> — For loans that fund, the script determines whether extensions occur based on product type, purpose, and operational randomness. Each extension record includes:</p>
+
+    <ul>
+        <li>The number of extension days (5 or 15, depending on sequence)</li>
+        <li>The fee percentage and fee amount, calculated from the loan amount</li>
+        <li>A reason code (borrower delay, appraisal delay, underwriting conditions, etc.)</li>
+        <li>The request date and before/after lock expiration dates</li>
+        <li>The employee who approved the extension</li>
+    </ul>
+
+    <p>
+        The extension logic uses sequential loops to update expiration dates, apply fee rules, and generate realistic extension patterns. Early extensions tend to be shorter and cheaper, while later extensions carry 
+        higher cost and longer durations, mirroring real lock‑management behavior.
+    </p>
+
+    <p>
+        By combining statistical modeling, domain rules, helper functions, and controlled randomness, the final datasets behave like real mortgage data while remaining completely synthetic. This provides a safe, realistic 
+        foundation for the SQL modeling, DAX measures, and dashboards that follow.
+    </p>
+</div>
+
+
+
                 <div class="technical-card">
-                    <div class="sectiontitle">2. ETL & Data Cleaning (Jupyter Notebooks)</div>
-                    <p>[Placeholder – describe cleaning steps, transformations, saved versions]</p>
-                </div>
+    <div class="sectiontitle">2. ETL & Data Cleaning (Jupyter Notebook)</div>
+
+    <p>
+        After generating the synthetic datasets, I used Jupyter Notebook to perform all ETL and data‑cleaning steps before loading the data into PostgreSQL. 
+        The workflow followed a traditional Extract → Transform → Load pattern using <strong>Pandas</strong> for data manipulation, <strong>NumPy</strong> for numeric operations, 
+        and <strong>SQLAlchemy</strong> with <strong>psycopg2</strong> to load the cleaned data into a relational database.
+    </p>
+
+    <p><strong>Extract</strong> — I began by loading the raw CSV files (<em>employees.csv</em>, <em>loans.csv</em>, <em>loan_extensions.csv</em>) into Pandas dataframes. 
+        Using <code>.head()</code>, <code>.info()</code>, and <code>.columns</code>, I validated row counts, inspected data types, identified missing values, and confirmed the structure of each dataset. 
+        This step ensured that the generated data aligned with the expected schema before any transformations were applied.
+    </p>
+
+    <p><strong>Transform</strong> — Each dataset required extensive cleaning and standardization to prepare it for SQL modeling and Power BI. Key transformations included:</p>
+
+    <ul>
+        <li><strong>Column normalization:</strong> Standardized column names by stripping whitespace, converting to lowercase, replacing spaces with underscores, and then renaming to business‑friendly labels.</li>
+        <li><strong>Date parsing:</strong> Converted all date fields (hire dates, application dates, lock dates, funding dates, extension dates) using <code>pd.to_datetime()</code> with error coercion.</li>
+        <li><strong>Numeric conversion:</strong> Coerced salary, BPS compensation, loan amounts, interest rates, extension fees, and other numeric fields into proper numeric types.</li>
+        <li><strong>Text cleaning:</strong> Standardized categorical fields such as extension reasons and requestor roles by stripping whitespace, normalizing spacing, and applying consistent capitalization.</li>
+        <li><strong>Feature engineering:</strong> Added new fields including employee tenure, compensation flags, branch labels, total extension days, total extension cost, and extension buckets.</li>
+        <li><strong>Duplicate checks:</strong> Verified dataset integrity using <code>.duplicated()</code> across full rows and key combinations (e.g., loan number + extension sequence).</li>
+        <li><strong>Missing value handling:</strong> Identified and resolved null values where appropriate, ensuring all required fields were populated for SQL ingestion.</li>
+    </ul>
+
+    <p>
+        These transformations ensured that each dataset was clean, consistent, and aligned with real mortgage data structures. For example, employee compensation fields were mutually exclusive (salary vs. BPS), 
+        loan dates were properly typed for timeline calculations, and extension records included aggregated metrics such as total extension days and total extension cost per loan.
+    </p>
+
+    <div class="sectiontitle" style="margin-top: 1.5rem;">3. Loading Cleaned Data into PostgreSQL</div>
+
+    <p>
+        Once the datasets were cleaned, I used <strong>SQLAlchemy</strong> and <strong>psycopg2</strong> to load them into a PostgreSQL database named <em>Hinshaw_Mortgage</em>. 
+        I created three tables—<em>employees_clean</em>, <em>loans_clean</em>, and <em>extensions_clean</em>—using explicit <code>CREATE TABLE</code> statements to define data types, primary keys, and foreign key relationships.
+    </p>
+
+    <p>
+        After defining the schema, I used <code>to_sql()</code> to append the cleaned Pandas dataframes into their respective tables. 
+        To validate the load, I ran SQL queries directly from the notebook (e.g., <code>SELECT COUNT(*) FROM employees</code>) to confirm that row counts matched the cleaned datasets.
+    </p>
+
+    <p>
+        This step completed the ETL pipeline and prepared the data for SQL modeling and Power BI. By loading the data into PostgreSQL, I was able to write relational queries, enforce schema consistency, 
+        and build a more realistic analytics environment that mirrors the workflows used in enterprise BI systems.
+    </p>
+</div>
+
 
                 <!-- SQL MODELING -->
                 <div class="technical-card">
