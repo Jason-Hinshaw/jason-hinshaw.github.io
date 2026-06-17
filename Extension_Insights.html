@@ -220,8 +220,45 @@
         <section>
             <div class="container">
 
-                <!-- HERO IMAGE -->
-                <img src="Assets/Extension Insights.png" alt="Extension Deep-Dive Dashboard" class="hero-image">
+                <!-- EXTENSION DEEP DIVE -->
+<div class="dashboard-frame">
+    <a href="Extension_Insights.html">
+        <img src="Assets/Extension Insights.png" 
+             alt="Extension Deep Dive Dashboard" 
+             class="hero-image">
+    </a>
+</div>
+
+<style>
+    .dashboard-frame {
+        width: 100%;
+        max-width: 1400px;
+        margin: 20px auto;
+        border-radius: 10px;
+        border: 1px solid #1f2937;
+        background: #0f172a;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
+        image-rendering: auto;
+        display: block;
+        transition: transform 0.25s ease;
+    }
+
+    .dashboard-frame:hover .hero-image {
+        transform: scale(1.02);
+    }
+</style>
+
 
                 <!-- PDF LINK -->
                 <p>
